@@ -151,12 +151,8 @@ private String startPos;
           for(int i=0;i<chessBoard.length;i++){
             for(int j=0;j<chessBoard.length;j++){
                 System.out.printf(chessBoard[i][j].getSymbol());
-                count++;
-                if(count == 8){
-                    System.out.print("\n");
-                    count =0;
-                }
             }
+            System.out.println();
         }
     }
 }
