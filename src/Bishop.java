@@ -31,4 +31,14 @@ public class Bishop extends Piece{
 		return false;
 	}
 
+	@Override
+	public char getSymbol(String color) {
+		if(color.equals("white")) return 'B';
+		return 'b';
+	}
+
+	@Override
+	public String getColor() {
+		return this.color;
+	}
 }

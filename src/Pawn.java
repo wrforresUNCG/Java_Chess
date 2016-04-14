@@ -31,4 +31,14 @@ public class Pawn extends Piece{
 		return false;
 	}
 
+	@Override
+	public char getSymbol(String color) {
+		if(color.equals("white")) return 'P';
+		return 'p';
+	}
+
+	@Override
+	public String getColor() {
+		return this.color;
+	}
 }

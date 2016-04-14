@@ -1,4 +1,7 @@
 
+import java.util.*;
+import java.io.*;
+
 public class Board {
 Space[][] chessBoard = new Space[8][8];
 private String startPos;

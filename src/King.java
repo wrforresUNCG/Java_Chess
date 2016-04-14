@@ -31,4 +31,15 @@ public class King extends Piece{
 		return false;
 	}
 
+	@Override
+	public char getSymbol(String color) {
+		if(color.equals("white")) return 'K';
+		return 'k';
+	}
+
+	@Override
+	public String getColor() {
+		return this.color;
+	}
+
 }

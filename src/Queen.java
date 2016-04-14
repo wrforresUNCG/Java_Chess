@@ -31,4 +31,15 @@ public class Queen extends Piece{
 		return false;
 	}
 
+	@Override
+	public char getSymbol(String color) {
+		if(color.equals("white")) return 'Q';
+		return 'q';
+	}
+	
+	@Override
+	public String getColor(){
+		return this.color;
+	}
+
 }

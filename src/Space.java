@@ -15,9 +15,10 @@ public class Space {
         //is there anothe piece here? if so, capture piece
         
         piece = movPiece; //set piece in space
-        symbol = piece.symbol;
+        symbol = ("|" + piece.getSymbol(piece.getColor()) + "|");
     }
     
     public String getSymbol(){
         return symbol;
     }
+}
