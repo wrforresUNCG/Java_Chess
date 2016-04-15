@@ -7,7 +7,6 @@ public class Driver {
          boolean white = true; //white pieces are capital case
         boolean black = false; //black pieces are lowercase
         boolean win = false;
-        boolean quit = false;
         String move;
         
         Board b = new Board();
@@ -16,7 +15,7 @@ public class Driver {
         Scanner userInput = new Scanner(System.in);
         
         play:
-        while(win == false || quit == false){
+        while(win == false){
             if(white == true){
                 System.out.println("It is the white's turn, enter your move: ");
                 move = userInput.nextLine();
