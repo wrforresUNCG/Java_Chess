@@ -23,13 +23,14 @@ private String startPos;
 }
 
 public void printBoard(){
-          int count =0;
           for(int i=0;i<chessBoard.length;i++){
+              System.out.print(8-i+"|");
             for(int j=0;j<chessBoard.length;j++){
                 System.out.printf(chessBoard[i][j].getSymbol());
             }
             System.out.println();
         }
+          System.out.println("  |a||b||c||d||e||f||g||h|");
     }
     
     public void convert(String pos){
