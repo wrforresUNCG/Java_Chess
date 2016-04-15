@@ -15,6 +15,23 @@ private String startPos;
         
     }
     
+     public void movePiece(int startX, int startY, int endX, int endY){
+        String spaceSym;
+        spaceSym = this.chessBoard[startX][startY].symbol;
+        this.chessBoard[startX][startY].symbol="|_|";
+        this.chessBoard[endX][endY].symbol=spaceSym;    
+}
+
+public void printBoard(){
+          int count =0;
+          for(int i=0;i<chessBoard.length;i++){
+            for(int j=0;j<chessBoard.length;j++){
+                System.out.printf(chessBoard[i][j].getSymbol());
+            }
+            System.out.println();
+        }
+    }
+    
     public void convert(String pos){
         Scanner in = new Scanner(pos);
         in.useDelimiter(":");
