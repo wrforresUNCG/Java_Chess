@@ -1,3 +1,5 @@
+import java.util.*;
+import java.io.*;
 
 public class Driver {
     /**
@@ -11,7 +13,8 @@ public class Driver {
         
         Board b = new Board();
         intro();
-        //b.printBoard();
+        b.setBoardStart();
+        b.printBoard();
         Scanner userInput = new Scanner(System.in);
         
         play:

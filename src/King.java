@@ -19,7 +19,7 @@ public class King extends Piece{
 	
 	public King(String color, String curPos){
 		String type = "King";
-		char symbol = 'K';
+		char symbol = getSymbol(color);
 		this.color = color;
 		this.curPos = curPos;
 		//int curX; needs a converter method

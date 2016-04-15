@@ -19,7 +19,7 @@ public class Queen extends Piece{
 	
 	public Queen(String color, String curPos){
 		String type = "Queen";
-		char symbol = 'Q';
+		char symbol = getSymbol(color);
 		this.color = color;
 		this.curPos = curPos;
 		//int curX; needs a converter method

@@ -19,7 +19,7 @@ public class Rook extends Piece{
 	
 	public Rook(String color, String curPos){
 		String type = "Rook";
-		char symbol = 'R';
+		char symbol = getSymbol(color);
 		this.color = color;
 		this.curPos = curPos;
 		//int curX; needs a converter method

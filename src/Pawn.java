@@ -19,7 +19,7 @@ public class Pawn extends Piece{
 	
 	public Pawn(String color, String curPos){
 		String type = "Pawn";
-		char symbol = 'P';
+		char symbol = getSymbol(color);
 		this.color = color;
 		this.curPos = curPos;
 		//int curX; needs a converter method

@@ -19,7 +19,7 @@ public class Knight extends Piece{
 	
 	public Knight(String color, String curPos){
 		String type = "Knight";
-		char symbol = 'N';
+		char symbol = getSymbol(color);
 		this.color = color;
 		this.curPos = curPos;
 		//int curX; needs a converter method

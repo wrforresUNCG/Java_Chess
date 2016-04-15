@@ -19,7 +19,7 @@ public class Bishop extends Piece{
 	
 	public Bishop(String color, String curPos){
 		String type = "Bishop";
-		char symbol = 'B';
+		char symbol = getSymbol(color);
 		this.color = color;
 		this.curPos = curPos;
 		//int curX; needs a converter method

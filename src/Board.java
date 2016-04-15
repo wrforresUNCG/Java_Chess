@@ -1,10 +1,10 @@
-
 import java.util.*;
 import java.io.*;
 
 public class Board {
-Space[][] chessBoard = new Space[8][8];
-private String startPos;
+
+	Space[][] chessBoard = new Space[8][8];
+	private String startPos;
     private String endPos;
     int startX, startY, endX, endY;
     
@@ -23,17 +23,21 @@ private String startPos;
         spaceSym = this.chessBoard[startX][startY].symbol;
         this.chessBoard[startX][startY].symbol="|_|";
         this.chessBoard[endX][endY].symbol=spaceSym;    
-}
+     }
 
-public void printBoard(){
+     public void printBoard(){
+         System.out.println(" --------------------------");
+         
           for(int i=0;i<chessBoard.length;i++){
               System.out.print(8-i+"|");
             for(int j=0;j<chessBoard.length;j++){
                 System.out.printf(chessBoard[i][j].getSymbol());
             }
-            System.out.println();
+            System.out.println("|");
         }
-          System.out.println("  |a||b||c||d||e||f||g||h|");
+          
+          System.out.println(" --------------------------");
+          System.out.println("   a  b  c  d  e  f  g  h");
     }
     
     public void convert(String pos){
@@ -165,4 +169,33 @@ public void printBoard(){
             return chessBoard[i][j];
         }
     
+    public Board setBoardStart(){
+    	chessBoard[0][0].setPiece(new Rook("black", "a8"));
+    	chessBoard[0][1].setPiece(new Knight("black", "b8"));
+    	chessBoard[0][2].setPiece(new Bishop("black", "c8"));
+    	chessBoard[0][3].setPiece(new Queen("black", "d8"));
+    	chessBoard[0][4].setPiece(new King("black", "e8"));
+    	chessBoard[0][5].setPiece(new Bishop("black", "f8"));
+    	chessBoard[0][6].setPiece(new Knight("black", "g8"));
+    	chessBoard[0][7].setPiece(new Rook("black", "h8"));
+    	
+    	for(int i = 0; i<8; i++){
+    		chessBoard[1][i].setPiece(new Pawn("black", 'a'+i + "7"));
+    	}
+    	
+    	for(int i = 0; i<8; i++){
+    		chessBoard[6][i].setPiece(new Pawn("white", 'a'+i + "2"));
+    	}
+    	
+    	chessBoard[7][0].setPiece(new Rook("white", "a8"));
+    	chessBoard[7][1].setPiece(new Knight("white", "b8"));
+    	chessBoard[7][2].setPiece(new Bishop("white", "c8"));
+    	chessBoard[7][3].setPiece(new Queen("white", "e8"));
+    	chessBoard[7][4].setPiece(new King("white", "d8"));
+    	chessBoard[7][5].setPiece(new Bishop("white", "f8"));
+    	chessBoard[7][6].setPiece(new Knight("white", "g8"));
+    	chessBoard[7][7].setPiece(new Rook("white", "h8"));
+    	
+    	return null;
+    }
 }
