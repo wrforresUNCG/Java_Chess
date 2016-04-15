@@ -15,4 +15,10 @@ public abstract class Piece {
 	public abstract String getColor();
 	
 	public abstract char getSymbol(String color);
+	
+	public abstract String getCurPos();
+	
+	public abstract int getCurX();
+	
+	public abstract int getCurY();
 }
