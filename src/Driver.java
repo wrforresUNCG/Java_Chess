@@ -6,7 +6,7 @@ public class Driver {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-         boolean white = true; //white pieces are capital case
+        boolean white = true; //white pieces are capital case
         boolean black = false; //black pieces are lowercase
         boolean win = false;
         String move;
@@ -69,8 +69,9 @@ public class Driver {
         System.out.println("A new game of chess has been started.");
         System.out.println("The white pieces are all capital letters.");
         System.out.println("The black pieces are all lowercase letters");
-        System.out.println("The white players goes first.");
+        System.out.println("The white player goes first.");
         System.out.println("Enter each move in the form of <start coordinate>:<end coordinate>");
+        System.out.println("Note: attempting to move a space with no piece will forfeit the turn");
         System.out.println("Type 'quit' at anytime to quit the match.");
     }
     

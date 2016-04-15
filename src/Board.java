@@ -21,12 +21,15 @@ public class Board {
      public void movePiece(int startX, int startY, int endX, int endY){
         String spaceSym;
         spaceSym = this.chessBoard[startX][startY].symbol;
-        this.chessBoard[startX][startY].symbol="|_|";
-        this.chessBoard[endX][endY].symbol=spaceSym;    
+        if(!(spaceSym.equals("|_|"))){
+        	this.chessBoard[startX][startY].symbol="|_|";
+        	this.chessBoard[endX][endY].symbol=spaceSym;
+        }
+        else System.out.println("Wouldn't you have rather moved a piece?");
      }
 
      public void printBoard(){
-         System.out.println(" --------------------------");
+         System.out.println("\n --------------------------");
          
           for(int i=0;i<chessBoard.length;i++){
               System.out.print(8-i+"|");
@@ -41,7 +44,10 @@ public class Board {
     }
     
     public void convert(String pos){
-        Scanner in = new Scanner(pos);
+    	startX = -1;
+    	startY = -1;
+    	
+        Scanner in = new Scanner(pos.toLowerCase());
         in.useDelimiter(":");
         String temp;
         int count = 0;
@@ -86,7 +92,7 @@ public class Board {
         }
         for(int i = 1; i < 9; i++){
             if(startPos.compareTo("e" + i) == 0){
-                startX = i - 1;
+                startX = 8 - i;
                 startY = 4;
             }
         }
@@ -160,9 +166,17 @@ public class Board {
             }
         }
         
-         
         
-       movePiece(startX, startY, endX, endY);
+        boolean valIn = true;
+        if(startX < 0 || startX > 7) valIn = false;
+        if(startY < 0 || startY > 7) valIn = false;
+        if(startX > 0 && startX < 8 && startY > 0 && startY < 8){
+        	if(chessBoard[startX][startY].getSymbol().equals("|_|")) valIn = false;
+        }
+         
+//        System.out.println(startX + " " + startY);
+        if(valIn == true) movePiece(startX, startY, endX, endY);
+
     }
     
     public Space getSpace(int i, int j){
