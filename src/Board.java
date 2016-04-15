@@ -158,9 +158,7 @@ public void printBoard(){
         
          
         
-        
-         System.out.println("The start position is: " + startX + ", " + startY);
-         System.out.println("The end position is: " + endX + ", " + endY);
+       movePiece(startX, startY, endX, endY);
     }
     
     public Space getSpace(int i, int j){
