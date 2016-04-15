@@ -167,13 +167,4 @@ public void printBoard(){
             return chessBoard[i][j];
         }
     
-    public void printBoard(){
-          int count =0;
-          for(int i=0;i<chessBoard.length;i++){
-            for(int j=0;j<chessBoard.length;j++){
-                System.out.printf(chessBoard[i][j].getSymbol());
-            }
-            System.out.println();
-        }
-    }
 }
