@@ -1,4 +1,10 @@
-public class Space {
+/**
+ * Class representing an empty space on the chess board
+ * 
+ * @author Rene Fernandez
+ * @author William Forrest
+ *
+ */public class Space {
     
     int row;
     int column;

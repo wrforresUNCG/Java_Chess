@@ -1,4 +1,9 @@
-
+/**
+ * Class representing a King chess piece.
+ * 
+ * @author William Forrest
+ *
+ */
 public class King extends Piece{
 
 	private String type;

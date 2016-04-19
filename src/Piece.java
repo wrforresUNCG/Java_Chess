@@ -3,6 +3,7 @@
  * Holds a concept of a type, color, and current position.
  * Specifies that there are abstract methods for determining
  *     valid moves and valid captures.
+ * 
  * @author Will Forrest
  *
  */

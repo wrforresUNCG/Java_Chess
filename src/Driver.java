@@ -1,6 +1,16 @@
 import java.util.*;
 import java.io.*;
 
+/**
+ * Driver class for the Java_Chess project.
+ * Driver facilities playing a console-based game of chess.
+ * 
+ * @author William Forrest
+ * @author Logan Rohde
+ * @author Rene Fernandez
+ * @version 1.0
+ */
+
 public class Driver {
     /**
      * @param args the command line arguments

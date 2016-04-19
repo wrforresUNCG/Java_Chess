@@ -1,4 +1,9 @@
-
+/**
+ * Class representing a Knight chess piece.
+ * 
+ * @author William Forrest
+ *
+ */
 public class Knight extends Piece{
 
 	private String type;

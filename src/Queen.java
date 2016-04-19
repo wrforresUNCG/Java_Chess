@@ -1,4 +1,9 @@
-
+/**
+ * Class representing a Queen chess piece.
+ * 
+ * @author William Forrest
+ *
+ */
 public class Queen extends Piece{
 
 	private String type;

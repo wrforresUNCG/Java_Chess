@@ -1,4 +1,9 @@
-
+/**
+ * Class representing a Bishop chess piece.
+ * 
+ * @author William Forrest
+ *
+ */
 public class Bishop extends Piece{
 
 	private String type;

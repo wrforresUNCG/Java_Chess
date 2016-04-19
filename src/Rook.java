@@ -1,4 +1,9 @@
-
+/**
+ * Class representing a Rook chess piece.
+ * 
+ * @author William Forrest
+ *
+ */
 public class Rook extends Piece{
 
 	private String type;

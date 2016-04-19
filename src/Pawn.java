@@ -1,4 +1,9 @@
-
+/**
+ * Class representing a Pawn chess piece.
+ * 
+ * @author William Forrest
+ *
+ */
 public class Pawn extends Piece{
 
 	private String type;

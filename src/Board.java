@@ -1,6 +1,14 @@
 import java.util.*;
 import java.io.*;
 
+/**
+ * Class for controlling functions on the chess board.
+ * 
+ * @author William Forrest
+ * @author Logan Rohde
+ * @author Rene Fernandez
+ *
+ */
 public class Board {
 
 	Space[][] chessBoard = new Space[8][8];
