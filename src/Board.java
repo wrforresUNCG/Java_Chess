@@ -21,22 +21,15 @@ public class Board {
         for(int i=0;i<chessBoard.length;i++){
             for(int j=0;j<chessBoard.length;j++){
                 chessBoard[i][j]= new Space(i,j);
-                //chessBoard[i][j].piece.
             }
         }
- //       for(int i = 0; i < chessBoard.length; i++){
-  //    	for(int j = 0; j < chessBoard.length;j++){
-  //      		chessBoard
-   //     	}
-   //     }
-        
     }
     
      public void movePiece(int startX, int startY, int endX, int endY){
        Piece movingP;
         movingP = this.chessBoard[startY][startX].getPiece();
         if((movingP != null) && chessBoard[startY][startX].piece.validMove(chessBoard, startX, startY, endX, endY)){
-        	this.chessBoard[startY][startX].removePiece();
+        	this.chessBoard[startY][startX].removePiece(startY, startX);
         	this.chessBoard[endY][endX].setPiece(movingP);
         }
         else

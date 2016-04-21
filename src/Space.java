@@ -15,7 +15,7 @@
         row = j;
         column = i;
         symbol = "|_|";
-        this.piece = new EmptyPiece(column, row);
+        piece = new EmptyPiece(column, row);
     }
     
     public void setPiece(Piece movPiece){
@@ -33,8 +33,8 @@
         return piece;
     }
     
-    public void removePiece(){
-        piece = null;
-        symbol = "|_|";
+    public void removePiece(int y, int x){
+        piece = new EmptyPiece(y, x);
+        symbol = ("|" + piece.getSymbol(piece.getColor()) + "|");
     }
 }

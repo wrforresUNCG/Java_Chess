@@ -11,9 +11,11 @@ public class EmptyPiece extends Piece{
 	
 	public EmptyPiece(int i, int j){
 		this.type = "empty";
-		String color = "none";
-		char symbol = '_';
-		String curPos;
+		this.color = "none";
+		this.symbol = '_';
+		this.curPos = "";
+		this.curX = j;
+		this.curY = i;
 	}
 	
 	
@@ -31,32 +33,30 @@ public class EmptyPiece extends Piece{
 
 	@Override
 	public String getColor() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.color;
 	}
 
 	@Override
 	public char getSymbol(String color) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.symbol;
 	}
 
 	@Override
 	public String getCurPos() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.curPos;
 	}
 
 	@Override
 	public int getCurX() {
 		// TODO Auto-generated method stub
-		return 0;
+		return this.curX;
 	}
 
 	@Override
 	public int getCurY() {
 		// TODO Auto-generated method stub
-		return 0;
+		return this.curY;
 	}
 
 }
