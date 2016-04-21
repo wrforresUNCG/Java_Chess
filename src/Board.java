@@ -27,6 +27,7 @@ public class Board {
     }
     
      public void movePiece(int startX, int startY, int endX, int endY){
+<<<<<<< HEAD
         String spaceSym;
         spaceSym = this.chessBoard[startY][startX].symbol;
         System.out.println("we're going to be moving the piece " + spaceSym + " from " + startX + startY + " to " + endX + endY);
@@ -42,6 +43,16 @@ public class Board {
         	System.out.println("So we made those moves?");
         }
         else System.out.println("Wouldn't you have rather moved a piece?");
+=======
+       Piece movingP;
+        movingP = this.chessBoard[startX][startY].getPiece();
+        if(movingP != null){
+        	this.chessBoard[startX][startY].removePiece();
+        	this.chessBoard[endX][endY].setPiece(movingP);
+        }
+        else
+             System.out.println("you have to move a piece");
+>>>>>>> origin/master
      }
 
      public void printBoard(){

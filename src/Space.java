@@ -15,6 +15,7 @@
         row = i;
         column = j;
         symbol = "|_|";
+        piece = null;
     }
     
     public void setPiece(Piece movPiece){
@@ -26,5 +27,14 @@
     
     public String getSymbol(){
         return symbol;
+    }
+    
+      public Piece getPiece(){
+        return piece;
+    }
+    
+    public void removePiece(){
+        piece = null;
+        symbol = "|_|";
     }
 }
