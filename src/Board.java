@@ -21,38 +21,26 @@ public class Board {
         for(int i=0;i<chessBoard.length;i++){
             for(int j=0;j<chessBoard.length;j++){
                 chessBoard[i][j]= new Space(i,j);
+                //chessBoard[i][j].piece.
             }
         }
+ //       for(int i = 0; i < chessBoard.length; i++){
+  //    	for(int j = 0; j < chessBoard.length;j++){
+  //      		chessBoard
+   //     	}
+   //     }
         
     }
     
      public void movePiece(int startX, int startY, int endX, int endY){
-<<<<<<< HEAD
-        String spaceSym;
-        spaceSym = this.chessBoard[startY][startX].symbol;
-        System.out.println("we're going to be moving the piece " + spaceSym + " from " + startX + startY + " to " + endX + endY);
-        System.out.println(spaceSym + "'s starting X is " + startX);
-        System.out.println(spaceSym + "'s starting Y is " + startY);
-        
-        System.out.println("That move should work: " + chessBoard[startY][startX].piece.validMove(chessBoard, startX, startY, endX, endY));
-        // ADDED && CHESSBOARD[STA...
-        // WAS FUNCTIONAL BEFORE ADD
-        if(!(spaceSym.equals("|_|")) && chessBoard[startY][startX].piece.validMove(chessBoard, startX, startY, endX, endY)){
-        	this.chessBoard[startY][startX].symbol="|_|";
-        	this.chessBoard[endY][endX].symbol=spaceSym;
-        	System.out.println("So we made those moves?");
-        }
-        else System.out.println("Wouldn't you have rather moved a piece?");
-=======
        Piece movingP;
-        movingP = this.chessBoard[startX][startY].getPiece();
-        if(movingP != null){
-        	this.chessBoard[startX][startY].removePiece();
-        	this.chessBoard[endX][endY].setPiece(movingP);
+        movingP = this.chessBoard[startY][startX].getPiece();
+        if((movingP != null) && chessBoard[startY][startX].piece.validMove(chessBoard, startX, startY, endX, endY)){
+        	this.chessBoard[startY][startX].removePiece();
+        	this.chessBoard[endY][endX].setPiece(movingP);
         }
         else
              System.out.println("you have to move a piece");
->>>>>>> origin/master
      }
 
      public void printBoard(){
@@ -205,13 +193,13 @@ public class Board {
 
         if(valIn == true){
         	/////////////
-        	System.out.println("||||| startPos = " + startPos);
+        	System.out.println("***** startPos = " + startPos);
         	System.out.println("||||| endPos = " + endPos);
             System.out.println("||||| startX = " + startX);
             System.out.println("||||| startY = " + startY);
             System.out.println("||||| endX = " + endX);
             System.out.println("||||| endY = " + endY);
-            System.out.println("||||| NOW TO MOVE");
+            System.out.println("***** NOW TO MOVE");
             /////////////
             movePiece(startX, startY, endX, endY);
         }

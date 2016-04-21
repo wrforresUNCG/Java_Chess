@@ -74,8 +74,14 @@ public class Pawn extends Piece{
 	
 	public boolean valUp(Space[][] chessBoard, int staX, int staY, int tarX, int tarY, String teamOcc){
 		//Is it occupied by player's own piece?
-		if(chessBoard[staY - 1][staX].piece == null) System.out.println("FUCK ITS NOT CREATED");
-		if(chessBoard[staY - 1][staX].piece.getColor().equals(teamOcc)) return false;
+		if(chessBoard[tarY][staX].piece == null) System.out.println("FUCK ITS NOT CREATED");
+		System.out.println(teamOcc);
+		//if(chessBoard[staY - 1][staX].piece.getColor().equals(teamOcc)) return false;
+		
+		System.out.println(tarX == staX);
+		String targetColor = chessBoard[tarY][tarX].piece.getColor();
+		if(targetColor.equals(teamOcc)) return false;
+		//if(chessBoard[tarY][tarX].piece.getColor().equals(teamOcc)) return false;
 		
 		return true;
 	}

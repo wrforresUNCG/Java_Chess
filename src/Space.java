@@ -12,10 +12,10 @@
     String symbol;
     
     public Space(int i, int j){
-        row = i;
-        column = j;
+        row = j;
+        column = i;
         symbol = "|_|";
-        piece = null;
+        this.piece = new EmptyPiece(column, row);
     }
     
     public void setPiece(Piece movPiece){
