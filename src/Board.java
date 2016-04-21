@@ -27,13 +27,14 @@ public class Board {
     }
     
      public void movePiece(int startX, int startY, int endX, int endY){
-        String spaceSym;
-        spaceSym = this.chessBoard[startX][startY].symbol;
-        if(!(spaceSym.equals("|_|"))){
-        	this.chessBoard[startX][startY].symbol="|_|";
-        	this.chessBoard[endX][endY].symbol=spaceSym;
+       Piece movingP;
+        movingP = this.chessBoard[startX][startY].getPiece();
+        if(movingP != null){
+        	this.chessBoard[startX][startY].removePiece();
+        	this.chessBoard[endX][endY].setPiece(movingP);
         }
-        else System.out.println("Wouldn't you have rather moved a piece?");
+        else
+             System.out.println("you have to move a piece");
      }
 
      public void printBoard(){
