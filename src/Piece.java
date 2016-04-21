@@ -9,7 +9,7 @@
  */
 public abstract class Piece {
 	
-	public abstract boolean validMove();
+	public abstract boolean validMove(Space[][] chessBoard, int staX, int staY, int tarX, int tarY);
 	
 	public abstract boolean validCap();
 	
@@ -22,4 +22,5 @@ public abstract class Piece {
 	public abstract int getCurX();
 	
 	public abstract int getCurY();
+	
 }
