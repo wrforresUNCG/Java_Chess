@@ -32,9 +32,25 @@ public class Knight extends Piece{
 	}
 	
 	@Override
-	public boolean validMove() {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean validMove(Space[][] chessBoard, int staX, int staY, int tarX, int tarY) {
+		// Knights move in L-shaped patterns where
+		// if |delta_Y| = 1, then |delta_X| = 1, or
+		// if |delta_Y| = 2, then |delta_X| = 2
+		if(Math.abs(tarY - staY) == 1){
+			if(!(Math.abs(tarX - staX) == 2)) return false;
+		}
+		else if(Math.abs(tarY - staY) == 2){
+			if(!(Math.abs(tarX - staX) == 1)) return false;
+		}
+		else return false;
+		
+		// Determine color of piece to be moved
+		String teamOcc = chessBoard[staY][staX].piece.getColor();
+		
+		// Is  the target occupied by player's own piece? Fail, if so.
+		if(chessBoard[tarY][tarX].piece.getColor().equals(teamOcc)) return false;
+		
+		return true;
 	}
 
 	@Override
