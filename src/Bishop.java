@@ -81,7 +81,7 @@ public class Bishop extends Piece{
 	public boolean valUpLft(Space[][] chessBoard, int staX, int staY, int tarX, int tarY, int diff, String teamOcc){
 		//tarY < staY && tarX < staX
 		for(int i = 1; i < diff; i++){
-			if(chessBoard[staY - i][staX - i].piece.getColor() != "none") return false;
+			if(!(chessBoard[staY - i][staX - i].piece.getColor().equals("none"))) return false;
 		}
 		
 		// Made it to the target, is it occupied by player's own piece?
@@ -105,7 +105,7 @@ public class Bishop extends Piece{
 	public boolean valDwnLft(Space[][] chessBoard, int staX, int staY, int tarX, int tarY, int diff, String teamOcc){
 		//tarY > staY && tarX < staX
 		for(int i = 1; i < diff; i++){
-			if(chessBoard[staY + i][staX - i].piece.getColor() != "none") return false;
+			if(!(chessBoard[staY + i][staX - i].piece.getColor().equals("none"))) return false;
 		}
 	
 		// Made it to the target, is it occupied by player's own piece?
@@ -129,7 +129,7 @@ public class Bishop extends Piece{
 	public boolean valDwnRt(Space[][] chessBoard, int staX, int staY, int tarX, int tarY, int diff, String teamOcc){
 		//tarY > staY && tarX > staX
 		for(int i = 1; i < diff; i++){
-			if(chessBoard[staY + i][staX + i].piece.getColor() != "none") return false;
+			if(!(chessBoard[staY + i][staX + i].piece.getColor().equals("none"))) return false;
 		}
 	
 		// Made it to the target, is it occupied by player's own piece?
@@ -153,13 +153,10 @@ public class Bishop extends Piece{
 	public boolean valUpRt(Space[][] chessBoard, int staX, int staY, int tarX, int tarY, int diff, String teamOcc){
 		//tarY < staY && tarX > staX
 		for(int i = 1; i < diff; i++){
-			System.out.println("testing [" + (staY - i) + "][" + (staX + i) + "]");
-			if(chessBoard[staY - i][staX + i].piece.getColor() != "none") return false;
+			if(!(chessBoard[staY - i][staX + i].piece.getColor().equals("none"))) return false;
 		}
 	
 		// Made it to the target, is it occupied by player's own piece?
-		System.out.println((staY - diff) == tarY);
-		System.out.println((staX + diff) == tarY);
 		if(chessBoard[staY - diff][staX + diff].piece.getColor().equals(teamOcc)) return false;
 
 		return true;
