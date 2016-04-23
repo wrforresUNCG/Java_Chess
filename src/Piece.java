@@ -27,4 +27,6 @@ public abstract class Piece {
 	
 	public abstract void setCurY(int updCur);
 	
+	public abstract boolean firstMove();
+	
 }
