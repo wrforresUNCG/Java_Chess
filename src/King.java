@@ -12,12 +12,14 @@ public class King extends Piece{
 	private String curPos;
 	private int curX;
 	private int curY;
+	private boolean firstMove
 	
 	public King(){
 		String type = "King";
 		char symbol = 'K';
 		String color;
 		String curPos;
+		this.firstMove = true;
 		//int curX; needs a converter method
 		//int curY; needs a converter method
 	}
@@ -27,6 +29,7 @@ public class King extends Piece{
 		char symbol = getSymbol(color);
 		this.color = color;
 		this.curPos = curPos;
+		this.firstMove = true;
 		//int curX; needs a converter method
 		//int curY; needs a converter method
 	}
@@ -43,6 +46,7 @@ public class King extends Piece{
 		// Is the target occupied by player's own piece? Fail, if so.
 		if(chessBoard[tarY][tarX].piece.getColor().equals(teamOcc)) return false;
 		
+		firstMove = false;
 		return true;
 	}
 
@@ -87,5 +91,10 @@ public class King extends Piece{
 	public void setCurY(int updCur){
 		this.curY = updCur;
 	}
+	
+	@Override
+        public boolean firstMove(){
+            return firstMove;
+        }
 
 }
