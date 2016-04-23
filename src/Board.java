@@ -15,6 +15,7 @@ public class Board {
 	private String startPos;
     private String endPos;
     int startX, startY, endX, endY;
+    private boolean isValMov;
     
     public Board(){
         
@@ -33,9 +34,12 @@ public class Board {
         	this.chessBoard[endY][endX].setPiece(movingP);
         	movingP.setCurX(endX);
         	movingP.setCurY(endX);
+        	isValMove = true;
         }
-        else
+        else {
              System.out.println("you have to move a piece");
+             isValMov = false;
+        }
      }
 
      public void printBoard(){
@@ -366,6 +370,114 @@ public class Board {
 	//}
     
     
+       public boolean castleKingSide(String color) {
+        if (color.equals("white")) {
+            //Check if the king will be in check when moved
+            if (this.chessBoard[7][4].piece.getSymbol(color) == 'K') {
+                if (!(this.chessBoard[7][4].piece.firstMove())) {
+                    return false;
+                }
+            }
+            if (this.chessBoard[7][7].piece.getSymbol(color) == 'R') {
+                if (!(this.chessBoard[7][7].piece.firstMove())) {
+                    return false;
+                }
+            }
+            if ((this.chessBoard[7][6].piece.getColor().equals("none"))
+                    && (this.chessBoard[7][5].piece.getColor().equals("none"))) {
+                Piece movingP = this.chessBoard[7][4].getPiece();
+                this.chessBoard[7][4].removePiece(7, 4);
+                this.chessBoard[7][6].setPiece(movingP);
+                movingP = this.chessBoard[7][7].getPiece();
+                this.chessBoard[7][7].removePiece(7, 7);
+                this.chessBoard[7][5].setPiece(movingP);
+                return true;
+            }
+
+        } 
+        
+        else if (color.equals("black")) {
+            //Check if the king will be in check when moved
+            if (this.chessBoard[0][4].piece.getSymbol(color) == 'k') {
+                if (!(this.chessBoard[0][4].piece.firstMove())) {
+                    return false;
+                }
+            }
+            if (this.chessBoard[0][7].piece.getSymbol(color) == 'r') {
+                if (!(this.chessBoard[0][7].piece.firstMove())) {
+                    return false;
+                }
+            }
+            if ((this.chessBoard[0][6].piece.getColor().equals("none"))
+                    && (this.chessBoard[0][5].piece.getColor().equals("none"))) {
+                Piece movingP = this.chessBoard[0][4].getPiece();
+                this.chessBoard[0][4].removePiece(0, 4);
+                this.chessBoard[0][6].setPiece(movingP);
+                movingP = this.chessBoard[0][7].getPiece();
+                this.chessBoard[0][7].removePiece(0, 7);
+                this.chessBoard[0][5].setPiece(movingP);
+                return true;
+            }
+        }
+
+        isValMov = false;
+        return false;
+
+    }
+    
+    public boolean castleQueenSide(String color) {
+        if (color.equals("white")) {
+            //Check if the king will be in check when moved
+            if (this.chessBoard[7][4].piece.getSymbol(color) == 'K') {
+                if (!(this.chessBoard[7][4].piece.firstMove())) {
+                    return false;
+                }
+            }
+            if (this.chessBoard[7][0].piece.getSymbol(color) == 'R') {
+                if (!(this.chessBoard[7][0].piece.firstMove())) {
+                    return false;
+                }
+            }
+            if ((this.chessBoard[7][1].piece.getColor().equals("none"))
+                    && (this.chessBoard[7][2].piece.getColor().equals("none"))
+                    && (this.chessBoard[7][3].piece.getColor().equals("none"))) {
+                Piece movingP = this.chessBoard[7][4].getPiece();
+                this.chessBoard[7][4].removePiece(7, 4);
+                this.chessBoard[7][2].setPiece(movingP);
+                movingP = this.chessBoard[7][0].getPiece();
+                this.chessBoard[7][0].removePiece(7, 0);
+                this.chessBoard[7][3].setPiece(movingP);
+                return true;
+            }
+        } else if (color.equals("black")) {
+            //Check if the king will be in check when moved
+            if (this.chessBoard[0][4].piece.getSymbol(color) == 'k') {
+                if (!(this.chessBoard[0][4].piece.firstMove())) {
+                    return false;
+                }
+            }
+            if (this.chessBoard[0][0].piece.getSymbol(color) == 'r') {
+                if (!(this.chessBoard[0][0].piece.firstMove())) {
+                    return false;
+                }
+            }
+            if ((this.chessBoard[0][1].piece.getColor().equals("none"))
+                    && (this.chessBoard[0][2].piece.getColor().equals("none"))
+                    && (this.chessBoard[0][3].piece.getColor().equals("none"))) {
+                Piece movingP = this.chessBoard[0][4].getPiece();
+                this.chessBoard[0][4].removePiece(0, 4);
+                this.chessBoard[0][2].setPiece(movingP);
+                movingP = this.chessBoard[0][0].getPiece();
+                this.chessBoard[0][0].removePiece(0, 0);
+                this.chessBoard[0][3].setPiece(movingP);
+                return true;
+            }
+        }
+
+        isValMov = false;
+        return false;
+    }
+    
     
     /**
      * Sets the proper pieces into place to display a starting board
@@ -397,5 +509,9 @@ public class Board {
     	chessBoard[7][5].setPiece(new Bishop("white", "f8"));
     	chessBoard[7][6].setPiece(new Knight("white", "g8"));
     	chessBoard[7][7].setPiece(new Rook("white", "h8"));
+    }
+    
+    public boolean validMove() {
+        return isValMov;
     }
 }
