@@ -12,12 +12,14 @@ public class Rook extends Piece{
 	private String curPos;
 	private int curX;
 	private int curY;
+	private boolean firstMove;
 	
 	public Rook(){
 		String type = "Rook";
 		char symbol = 'R';
 		String color;
 		String curPos;
+		this.firstMove = true;
 		//int curX; needs a converter method
 		//int curY; needs a converter method
 	}
@@ -27,6 +29,7 @@ public class Rook extends Piece{
 		char symbol = getSymbol(color);
 		this.color = color;
 		this.curPos = curPos;
+		this.firstMove = true;
 		//int curX; needs a converter method
 		//int curY; needs a converter method
 	}
@@ -59,7 +62,9 @@ public class Rook extends Piece{
 		else if(tarY == staY && tarX > staX){
 			valMov = valRt(chessBoard, staX, staY, tarX, tarY, difX, teamOcc);
 		}
-		
+		if(valMov){
+                    firstMove = false;
+                }
 		return valMov;
 	}
 
@@ -152,4 +157,9 @@ public class Rook extends Piece{
 	public void setCurY(int updCur){
 		this.curY = updCur;
 	}
+	
+	@Override
+        public boolean firstMove() {
+            return firstMove;
+        }
 }
