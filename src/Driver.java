@@ -16,8 +16,9 @@ public class Driver {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        boolean white = true; //white pieces are capital case
-        boolean black = false; //black pieces are lowercase
+        String white = "white"; //white pieces are capital case
+        String black = "black"; //black pieces are lowercase
+        String turnColor;
         boolean win = false;
         String move;
         
@@ -26,33 +27,75 @@ public class Driver {
         b.setBoardStart();
         b.printBoard();
         Scanner userInput = new Scanner(System.in);
+        turnColor = white;
         
         play:
         while(win == false){
-            if(white == true){
+            
+            if(turnColor.equals("white")){
+                //call check; return boolean
+                //boolean check = chkChk(turn color
+                //if in check let the user know, and then have to get out of check
                 System.out.println("It is the white's turn, enter your move: ");
                 move = userInput.nextLine();
                 if(move.compareTo("quit") == 0){
                     break play;
                 }
-                //convert move to readable array coordinates, then move the piece
-                b.convert(move);
+                if(move.equals("0-0-0")){
+                    if(b.castleQueenSide(turnColor) == false){
+                        System.out.println("You cannot castle on your Queen side");
+                    }
+                }
+                else if(move.equals("0-0")){
+                    if(b.castleKingSide(turnColor) == false){
+                        System.out.println("You cannot castle on your King side");
+                    }
+                }
+                else{
+                    //convert move to readable array coordinates, then move the piece
+                    b.convert(move);
+                }
+                //after move
+                //check Board
+                    //get occurrence
+                //pawn promotion
                 
-                white = false;
-                black = true;
+                if(b.validMove()){
+                    turnColor = black;
+                }
+                else{
+                    System.out.println("That is not a valid move, please reenter a valid move:");
+                }
             }
             
-            else if(black == true){
+            else if(turnColor.equals("black")){
                 System.out.println("It is black's turn, enter your move: ");
                 move = userInput.nextLine();
                 if(move.compareTo("quit") == 0){
                     break play;
                 }
-                //convert move to readable array coordinates, then move the piece
-                b.convert(move);
+                if(move.equals("0-0-0")){
+                    if(b.castleQueenSide(turnColor) == false){
+                        System.out.println("You cannot castle on your Queen side");
+                    }
+                }
+                else if(move.equals("0-0")){
+                    if(b.castleKingSide(turnColor) == false){
+                        System.out.println("You cannot castle on your King side");
+                    }
+                }
+                else{
+                    //convert move to readable array coordinates, then move the piece
+                    b.convert(move);
+                }
                 
-                black = false;
-                white = true;
+                if(b.validMove()){
+                    turnColor = white;
+                }
+                else{
+                    System.out.println("That is not a valid move, please reenter a valid move:");
+                }
+                
             }
             
             //display board
@@ -61,28 +104,18 @@ public class Driver {
         
         
         System.exit(0);
-        
-        /*Board b = new Board();
-        b.printBoard();
-        b.getSpace(0, 0).symbol = "|\u03de|";
-        System.out.println("");
-        System.out.println("");
-         b.printBoard();
-         System.out.println("");
-        System.out.println("");
-         b.movePiece(0, 0, 7, 0);
-         b.printBoard();*/
-           
     }
     
     public static void intro(){
         System.out.println("A new game of chess has been started.");
         System.out.println("The white pieces are all capital letters.");
         System.out.println("The black pieces are all lowercase letters");
-        System.out.println("The white player goes first.");
+        System.out.println("The white players goes first.");
         System.out.println("Enter each move in the form of <start coordinate>:<end coordinate>");
+        System.out.println("Enter '0-0' for a king side castle and '0-0-0' for a queen side castle");
         System.out.println("Note: attempting to move a space with no piece will forfeit the turn");
         System.out.println("Type 'quit' at anytime to quit the match.");
+        
+        
     }
-    
 }
