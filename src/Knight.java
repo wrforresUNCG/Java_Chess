@@ -95,4 +95,8 @@ public class Knight extends Piece{
 		this.curY = updCur;
 	}
 	
+	public boolean firstMove() {
+            return false;
+        }
+	
 }
