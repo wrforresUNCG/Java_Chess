@@ -203,4 +203,9 @@ public class Bishop extends Piece{
 		this.curY = updCur;
 	}
 	
+	@Override
+    	public boolean firstMove() {
+        	return false;
+    	}
+	
 }
