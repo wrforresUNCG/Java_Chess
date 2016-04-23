@@ -225,4 +225,9 @@ public class Queen extends Piece{
 	public void setCurY(int updCur){
 		this.curY = updCur;
 	}
+	
+	@Override
+    	public boolean firstMove() {
+        	return false;
+    	}
 }
