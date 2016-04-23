@@ -32,11 +32,85 @@ public class Rook extends Piece{
 	}
 	
 	@Override
-	public boolean validMove() {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean validMove(Space[][] chessBoard, int staX, int staY, int tarX, int tarY) {
+		// A rook moves vertically or horizontally by N spaces
+		int difY = Math.abs(tarY - staY);
+		int difX = Math.abs(tarX - staX);
+		
+		// Determine color of a piece to be moved
+		String teamOcc = chessBoard[staY][staX].piece.getColor();
+		
+		// Calculate Valid Move Conditions
+		boolean valMov = false;
+		
+		// Up
+		if(tarY < staY && tarX == staX){
+			valMov = valUp(chessBoard, staX, staY, tarX, tarY, difY, teamOcc);
+		}
+		// Left
+		else if(tarY == staY && tarX < staX){
+			valMov = valLft(chessBoard, staX, staY, tarX, tarY, difX, teamOcc);
+		}
+		// Down
+		else if(tarY > staY && tarX == staX){
+			valMov = valDwn(chessBoard, staX, staY, tarX, tarY, difX, teamOcc);
+		}
+		// Right
+		else if(tarY == staY && tarX > staX){
+			valMov = valRt(chessBoard, staX, staY, tarX, tarY, difX, teamOcc);
+		}
+		
+		return valMov;
 	}
 
+	public boolean valUp(Space[][] chessBoard, int staX, int staY, int tarX, int tarY, int diff, String teamOcc){
+		//tarY < staY && tarX == staX
+		for(int i = 1; i < diff; i++){
+			if(!(chessBoard[staY - i][staX].piece.getColor().equals("none"))) return false;
+		}
+		
+		// Made it to the target, is it occupied by player's own piece?
+		if(chessBoard[tarY][tarX].piece.getColor().equals(teamOcc)) return false;
+		
+		return true;
+	}
+	
+	public boolean valLft(Space[][] chessBoard, int staX, int staY, int tarX, int tarY, int diff, String teamOcc){
+		//tarY == staY && tarX < staX
+		for(int i = 1; i < diff; i++){
+			if(!(chessBoard[staY][staX - i].piece.getColor().equals("none"))) return false;
+		}
+		
+		// Made it to the target, is it occupied by player's own piece?
+		if(chessBoard[tarY][tarX].piece.getColor().equals(teamOcc)) return false;
+		
+		return true;
+	}
+	
+	public boolean valDwn(Space[][] chessBoard, int staX, int staY, int tarX, int tarY, int diff, String teamOcc){
+		//tarY > staY && tarX == staX
+		for(int i = 1; i< diff; i++){
+			if(!(chessBoard[staY + 1][staX].piece.getColor().equals("none"))) return false;
+		}
+		
+		// Made it to the target, is it occupied by player's own piece?
+		if(chessBoard[tarY][tarX].piece.getColor().equals(teamOcc)) return false;
+		
+		return true;
+	}
+	
+	public boolean valRt(Space[][] chessBoard, int staX, int staY, int tarX, int tarY, int diff, String teamOcc){
+		//tarY == staY && tarX > staX
+		for(int i = 1; i < diff; i++){
+			if(!(chessBoard[staY][staX + i].piece.getColor().equals("none"))) return false;
+		}
+		
+		// Made it to the target, is it occupied by player's own piece?
+		if(chessBoard[tarY][tarX].piece.getColor().equals(teamOcc)) return false;
+		
+		return true;
+	}
+	
 	@Override
 	public boolean validCap() {
 		// TODO Auto-generated method stub

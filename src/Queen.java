@@ -33,7 +33,7 @@ public class Queen extends Piece{
 	
 	@Override
 	public boolean validMove(Space[][] chessBoard, int staX, int staY, int tarX, int tarY) {
-		// A Queen moves vertically, horizontally, or diagonally by N space
+		// A Queen moves vertically, horizontally, or diagonally by N spaces
 		int difY = Math.abs(tarY - staY);
 		int difX = Math.abs(tarX - staX);
 		
@@ -163,7 +163,7 @@ public class Queen extends Piece{
 	public boolean valRt(Space[][] chessBoard, int staX, int staY, int tarX, int tarY, int diff, String teamOcc){
 		//tarY == staY && tarX > staX
 		for(int i = 1; i < diff; i++){
-			if(!(chessBoard[staY][staY + i].piece.getColor().equals("none"))) return false;
+			if(!(chessBoard[staY][staX + i].piece.getColor().equals("none"))) return false;
 		}
 		
 		// Made it to the target, is it occupied by player's own piece?
