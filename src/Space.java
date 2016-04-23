@@ -26,10 +26,10 @@
     }
     
     public String getSymbol(){
-        return symbol;
+    	return symbol;
     }
     
-      public Piece getPiece(){
+    public Piece getPiece(){
         return piece;
     }
     
