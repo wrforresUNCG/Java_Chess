@@ -186,14 +186,21 @@ public class Bishop extends Piece{
 	
 	@Override
 	public int getCurX(){
-		//need to implement a call to the converter
-		return -1;
+		return this.curX;
 	}
 	
 	@Override
 	public int getCurY(){
-		//need to implement a call to the converter
-		return -1;
+		return this.curY;
+	}
+	
+	@Override
+	public void setCurX(int updCur){
+		this.curX = updCur;
+	}
+	
+	public void setCurY(int updCur){
+		this.curY = updCur;
 	}
 	
 }

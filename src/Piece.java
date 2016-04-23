@@ -23,4 +23,8 @@ public abstract class Piece {
 	
 	public abstract int getCurY();
 	
+	public abstract void setCurX(int updCur);
+	
+	public abstract void setCurY(int updCur);
+	
 }

@@ -49,14 +49,21 @@ public class EmptyPiece extends Piece{
 
 	@Override
 	public int getCurX() {
-		// TODO Auto-generated method stub
 		return this.curX;
 	}
 
 	@Override
 	public int getCurY() {
-		// TODO Auto-generated method stub
 		return this.curY;
 	}
+	
+	@Override
+	public void setCurX(int updCur){
+		this.curX = updCur;
+	}
 
+	@Override
+	public void setCurY(int updCur){
+		this.curY = updCur;
+	}
 }

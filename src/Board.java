@@ -31,6 +31,8 @@ public class Board {
         if((movingP != null) && chessBoard[startY][startX].piece.validMove(chessBoard, startX, startY, endX, endY)){
         	this.chessBoard[startY][startX].removePiece(startY, startX);
         	this.chessBoard[endY][endX].setPiece(movingP);
+        	movingP.setCurX(endX);
+        	movingP.setCurY(endX);
         }
         else
              System.out.println("you have to move a piece");
@@ -202,6 +204,168 @@ public class Board {
     public Space getSpace(int i, int j){
             return chessBoard[i][j];
         }
+    
+    
+    public Boolean kinChk(int curX, int curY){
+    	// If the King is in check from any movement of an opponent's piece, return true
+    	
+		// Determine color of a piece to be moved
+		String teamOcc = chessBoard[curY][curX].piece.getColor();
+
+		// Up
+    	if(kinChkUp(curX, curY, teamOcc)) return true;
+    	// Up Left
+    	if(kinChkUpLft(curX, curY, teamOcc)) return true;
+    	// Left
+    	if(kinChkLft(curX, curY, teamOcc)) return true;
+    	// Down Left
+    	if(kinChkDwnLft(curX, curY, teamOcc)) return true;
+    	// Down
+    	if(kinChckDwn(curX, curY, teamOcc)) return true;
+    	// Down Right
+    	if(kinChkDwnRt(curX, curY, teamOcc)) return true;
+    	// Right
+    	if(kinChkRt(curX, curY, teamOcc)) return true;
+    	// Up Right
+    	if(kinChkUpRt(curX, curY, teamOcc)) return true;
+    	// Knight Checks
+    	//if(kinKniChk(curX, curY, teamOcc)) return true;
+    	
+    	return false;
+    }
+    
+	// Up
+	public boolean kinChkUp(int curX, int curY, String teamOcc){
+		
+		int i = (8 - curY);
+		
+		while(i > 0){
+			if(!(chessBoard[i - 1][curX].piece.getColor().equals("none"))){
+				if(!(chessBoard[i -1][curX].piece.getColor().equals(teamOcc))) return true;
+			}
+			i--;
+		}
+
+		return false;
+	}
+	
+	// Up Left
+	public boolean kinChkUpLft(int curX, int curY, String teamOcc){
+
+		int i = (8 - curY);
+		int j = (8 - curX);
+		
+		while(i > 0 && j > 0){
+			if(!(chessBoard[i - 1][j - 1].piece.getColor().equals("none"))){
+				if(!(chessBoard[i -1][j - 1].piece.getColor().equals(teamOcc))) return true;
+			}
+			i--;
+			j--;
+		}
+		
+		return false;
+	}
+	
+	// Left
+	public boolean kinChkLft(int curX, int curY, String teamOcc){
+
+		int j = (8 - curX);
+		
+		while(j > 0){
+			if(!(chessBoard[curY][j - 1].piece.getColor().equals("none"))){
+				if(!(chessBoard[curY][j - 1].piece.getColor().equals(teamOcc))) return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	// Down Left
+	public boolean kinChkDwnLft(int curX, int curY, String teamOcc){
+
+		int i = (8 - curY);
+		int j = (8 - curX);
+		
+		while(i < 7 && j > 0){
+			if(!(chessBoard[i + 1][j - 1].piece.getColor().equals("none"))){
+				if(!(chessBoard[i + 1][j - 1].piece.getColor().equals(teamOcc))) return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	// Down
+	public boolean kinChckDwn(int curX, int curY, String teamOcc){
+
+		int i = (8 - curY);
+		
+		while(i < 7){
+			if(!(chessBoard[i + 1][curX].piece.getColor().equals("none"))){
+				if(!(chessBoard[i + 1][curX].piece.getColor().equals(teamOcc))) return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	// Down Right
+	public boolean kinChkDwnRt(int curX, int curY, String teamOcc){
+
+		int i = (8 - curY);
+		int j = (8 - curX);
+		
+		while(i < 7 && j < 7){
+			if(!(chessBoard[i + 1][j + 1].piece.getColor().equals("none"))){
+				if(!(chessBoard[i + 1][j + 1].piece.getColor().equals(teamOcc))) return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	// Right
+	public boolean kinChkRt(int curX, int curY, String teamOcc){
+
+		int j = (8 - curX);
+		
+		while(j < 8){
+			if(!(chessBoard[curY][j + 1].piece.getColor().equals("none"))){
+				if(!(chessBoard[curY][j + 1].piece.getColor().equals(teamOcc))) return true;
+			}
+		}
+	
+		return false;
+		
+	}
+	
+	// Up Right
+	public boolean kinChkUpRt(int curX, int curY, String teamOcc){
+
+		int i = (8 - curY);
+		int j = (8 - curX);
+		
+		while(i > 0 && j < 8){
+			if(!(chessBoard[i - 1][j + 1].piece.getColor().equals("none"))){
+				if(!(chessBoard[i - 1][j + 1].piece.getColor().equals(teamOcc))) return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	// Knight Checks
+	//public boolean kinKniChk(int curX, int curY, String teamOcc){
+	//	
+	//	String danger;
+	//	if(teamOcc.equals("white")) danger = "black";
+	//	else if(teamOcc.equals("black")) danger = "white";
+	//	
+	//	if(chessBoard[curY - ])
+	//	
+	//}
+    
+    
     
     /**
      * Sets the proper pieces into place to display a starting board
