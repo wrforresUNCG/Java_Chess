@@ -118,4 +118,48 @@ public class Driver {
         
         
     }
+    
+    public  static void pawnPromo(Board b,String color){
+        for (int i = 0; i < 8; i++) {
+                char x;
+                char xLow;
+                x = b.getSpace(0, i).piece.getSymbol(color);
+                xLow = Character.toLowerCase(x);
+                if (xLow == 'n') {
+                    System.out.println("Congratulations! Please choose a promotion for your pawn"
+                            + "\n Rook"
+                            + "\n Kinght"
+                            + "\n Bishop"
+                            + "\n Queen");
+                    Scanner pawnPromoInput = new Scanner(System.in);
+                    String selection;
+                    selection = pawnPromoInput.nextLine();
+                    if (selection.toLowerCase().compareTo("rook") == 0) {
+                        System.out.println("you chose a rook");
+                        String myPos;
+                        myPos = b.getSpace(0, i).piece.getCurPos();
+                        b.getSpace(0, i).setPiece(new Rook(color, myPos));
+                    } else if (selection.toLowerCase().compareTo("knight") == 0) {
+                        System.out.println("you  choose a knight");
+                        String myPos;
+                        myPos = b.getSpace(0, i).piece.getCurPos();
+                        b.getSpace(0, i).setPiece(new Knight(color, myPos));
+                    } else if (selection.toLowerCase().compareTo("bishop") == 0) {
+                        System.out.println("you  choose a Bishop");
+                        String myPos;
+                        myPos = b.getSpace(0, i).piece.getCurPos();
+                        b.getSpace(0, i).setPiece(new Bishop(color, myPos));
+                    } else if (selection.toLowerCase().compareTo("queen") == 0) {
+                        System.out.println("you  choose a Queen");
+                        String myPos;
+                        myPos = b.getSpace(0, i).piece.getCurPos();
+                        b.getSpace(0, i).setPiece(new Queen(color, myPos));
+                    } else {
+                        System.out.println("TryAgain");
+                    }
+
+                }
+
+            }
+    }//end of pawn promo method
 }
