@@ -34,9 +34,30 @@ public class Driver {
             
             if(turnColor.equals("white")){
                 //call check; return boolean
-                //boolean check = chkChk(turn color
-                //if in check let the user know, and then have to get out of check
-                System.out.println("It is the white's turn, enter your move: ");
+            	int i = 0, j = 0, kinX = -1, kinY = -1;
+            	boolean chkForKin = false;
+            	while(chkForKin == false){
+            		while(j < 8 && chkForKin == false){
+            			if(b.chessBoard[i][j].piece.getSymbol(b.chessBoard[i][j].piece.getColor()) == 'K'){
+            				b.chessBoard[i][j].piece.setCurX(j);
+            				b.chessBoard[i][j].piece.setCurY(i);
+            				kinX = b.chessBoard[i][j].piece.getCurX();
+            				kinY = b.chessBoard[i][j].piece.getCurY();
+            				chkForKin = true;
+            			}
+            			j++;
+            		}
+            		//if(i == 7) chkForKin = false; //if you have check through [i][j]==[7][7] there is no white King
+            		i++;
+            		j = 0;
+            	}
+            	boolean inCheck = false;
+            	System.out.println("King Pos + [" + kinY + "][" + kinX + "]");
+            	if(kinX > -1 && kinY > -1) inCheck = b.kinChk(kinX, kinY);
+            	//if in check let the user know, and then have to get out of check
+                if(inCheck == true) System.out.println("White is in check");
+                
+            	System.out.println("It is the white's turn, enter your move: ");
                 move = userInput.nextLine();
                 if(move.compareTo("quit") == 0){
                     break play;
@@ -60,12 +81,12 @@ public class Driver {
                     //get occurrence
                 //pawn promotion
                 
-                if(b.validMove()){
+                //if(b.validMove()){
                     turnColor = black;
-                }
-                else{
-                    System.out.println("That is not a valid move, please reenter a valid move:");
-                }
+                //}
+                //else{
+                //    System.out.println("That is not a valid move, please reenter a valid move:");
+                //}
             }
             
             else if(turnColor.equals("black")){
@@ -89,12 +110,12 @@ public class Driver {
                     b.convert(move);
                 }
                 
-                if(b.validMove()){
+                //if(b.validMove()){
                     turnColor = white;
-                }
-                else{
-                    System.out.println("That is not a valid move, please reenter a valid move:");
-                }
+                //}
+                //else{
+                //   System.out.println("That is not a valid move, please reenter a valid move:");
+                //}
                 
             }
             

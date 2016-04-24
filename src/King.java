@@ -12,7 +12,7 @@ public class King extends Piece{
 	private String curPos;
 	private int curX;
 	private int curY;
-	private boolean firstMove
+	private boolean firstMove;
 	
 	public King(){
 		String type = "King";
