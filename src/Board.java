@@ -38,7 +38,7 @@ public class Board {
         	isValMov = true;
         }
         else {
-             System.out.println("you have to move a piece");
+             System.out.println("Invalid Move. You lose your turn.");
              isValMov = false;
         }
      }
