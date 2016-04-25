@@ -56,7 +56,7 @@ public class Rook extends Piece{
 		}
 		// Down
 		else if(tarY > staY && tarX == staX){
-			valMov = valDwn(chessBoard, staX, staY, tarX, tarY, difX, teamOcc);
+			valMov = valDwn(chessBoard, staX, staY, tarX, tarY, difY, teamOcc);
 		}
 		// Right
 		else if(tarY == staY && tarX > staX){
@@ -94,10 +94,10 @@ public class Rook extends Piece{
 	
 	public boolean valDwn(Space[][] chessBoard, int staX, int staY, int tarX, int tarY, int diff, String teamOcc){
 		//tarY > staY && tarX == staX
-		for(int i = 1; i< diff; i++){
+		for(int i = 1; i < diff; i++){
 			if(!(chessBoard[staY + 1][staX].piece.getColor().equals("none"))) return false;
 		}
-		
+
 		// Made it to the target, is it occupied by player's own piece?
 		if(chessBoard[tarY][tarX].piece.getColor().equals(teamOcc)) return false;
 		

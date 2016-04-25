@@ -222,35 +222,68 @@ public class Board {
 		else if(teamOcc.equals("black")) danger = "white";
 
 		// Up
-    	if(kinChkUp(curX, curY, danger) == true) return true;
+		System.out.println("Beginning up");
+    	if(kinChkUp(curX, curY, danger)) return true;
     	// Up Left
-    	if(kinChkUpLft(curX, curY, danger) == true) return true;
+    	System.out.println("beginning up left");
+    	if(kinChkUpLft(curX, curY, danger)) return true;
     	// Left
+    	System.out.println("Beginning left");
     	if(kinChkLft(curX, curY, danger)) return true;
     	// Down Left;
+    	System.out.println("Beginning down left");
     	if(kinChkDwnLft(curX, curY, danger)) return true;
     	// Down
-    	if(kinChckDwn(curX, curY, danger)) return true;
+    	System.out.println("Beginning down");
+    	if(kinChkDwn(curX, curY, danger)) return true;
     	// Down Right
+    	System.out.println("Beginning down right");
     	if(kinChkDwnRt(curX, curY, danger)) return true;
     	// Right
+    	System.out.println("Beginning right");
     	if(kinChkRt(curX, curY, danger)) return true;
     	// Up Right
+    	System.out.println("Beginning up right");
     	if(kinChkUpRt(curX, curY, danger)) return true;
     	// Knight Checks
+    	System.out.println("Beginning knight checks");
     	if(kinKniChk(curX, curY, danger)) return true;
     	// Nothing puts the King in check
     	return false;
     }
     
-	// Up
+	/**
+	 * Checks to see if the King is placed in check by a piece above it on the board.
+	 * For a piece immediately above the King, opposing Kings, Queens, and Rooks are dangerous.
+	 * Past that, only unblocked, opposing Queens and Rooks are dangerous.
+	 * 
+	 * @param curX
+	 * @param curY
+	 * @param danger
+	 * @return
+	 */
 	public boolean kinChkUp(int curX, int curY, String danger){
 		
 		int i = curY;
 		
+		// King, Queen, and Rook are dangerous
+		if(i > 0){
+			if(!(chessBoard[i - 1][curX].piece.getColor().equals("none"))){
+				String occCol = chessBoard[i - 1][curX].piece.getColor();
+				char occSym = Character.toLowerCase(chessBoard[i - 1][curX].piece.getSymbol(occCol));
+				if(occCol == danger && (occSym == 'k' || occSym == 'q' || occSym == 'r')) return true;
+				else return false;
+			}
+		}
+		
+		i--;
+		
+		// Queen and Rook are dangerous
 		while(i > 0){
 			if(!(chessBoard[i - 1][curX].piece.getColor().equals("none"))){
-				if(chessBoard[i -1][curX].piece.getColor().equals(danger)) return true;
+				String occCol = chessBoard[i -1][curX].piece.getColor();
+				char occSym = Character.toLowerCase(chessBoard[i - 1][curX].piece.getSymbol(occCol));
+				if(occCol == danger && (occSym == 'q' || occSym == 'r')) return true;
 				else return false;
 			}
 			i--;
@@ -259,15 +292,41 @@ public class Board {
 		return false;
 	}
 	
-	// Up Left
+	/**
+	 * Checks to see if the King is placed in check by a piece to its upper-left diagonal on the board.
+	 * For a piece immediately to the upper-left of the King, opposing Bishops, Kings, Queens,
+	 *    and Pawns(only Black) are dangerous.
+	 * Past that, only unblocked, opposing Bishops and Queens are dangerous.
+	 * 
+	 * @param curX
+	 * @param curY
+	 * @param danger
+	 * @return
+	 */
 	public boolean kinChkUpLft(int curX, int curY, String danger){
 
 		int i = curY;
 		int j = curX;
 		
+		// Bishop, King, Queen, and Pawn are dangerous
+		if(i > 0 && j > 0){
+			if(!(chessBoard[i - 1][j - 1].piece.getColor().equals("none"))){
+				String occCol = chessBoard[i - 1][j - 1].piece.getColor();
+				char occSym = Character.toLowerCase(chessBoard[i - 1][j - 1].piece.getSymbol(occCol));
+				if(occCol == danger && (occSym == 'b' || occSym == 'k' || occSym == 'q' || occSym == 'p')) return true;
+				else return false;
+			}
+		}
+		
+		i--;
+		j--;
+		
+		// Bishop and Queen are dangerous
 		while(i > 0 && j > 0){
 			if(!(chessBoard[i - 1][j - 1].piece.getColor().equals("none"))){
-				if(chessBoard[i -1][j - 1].piece.getColor().equals(danger)) return true;
+				String occCol = chessBoard[i - 1][j - 1].piece.getColor();
+				char occSym = Character.toLowerCase(chessBoard[i - 1][j - 1].piece.getSymbol(occCol));
+				if(occCol == danger && (occSym == 'b' || occSym == 'q')) return true;
 				else return false;
 			}
 			i--;
@@ -277,151 +336,327 @@ public class Board {
 		return false;
 	}
 	
-	// Left
+	/**
+	 * Checks to see if the King is placed in check by a piece to its left on the board.
+	 * For a piece immediately to the left of the King, opposing Kings, Queens, and Rooks are dangerous.
+	 * Past that, only unblocked, opposing Queens and Rooks are dangerous.
+	 * 
+	 * @param curX
+	 * @param curY
+	 * @param danger
+	 * @return
+	 */
 	public boolean kinChkLft(int curX, int curY, String danger){
 
 		int j = curX;
 		
-		while(j > 0){
+		// King, Queen, and Rook are dangerous
+		if(j > 0){
 			if(!(chessBoard[curY][j - 1].piece.getColor().equals("none"))){
-				if(chessBoard[curY][j - 1].piece.getColor().equals(danger)) return true;
+				String occCol = chessBoard[curY][j - 1].piece.getColor();
+				char occSym = Character.toLowerCase(chessBoard[curY][j - 1].piece.getSymbol(occCol));
+				if(occCol == danger && (occSym == 'k' || occSym == 'q' || occSym == 'r')) return true;
 				else return false;
 			}
+		}
+		
+		j--;
+		
+		// Queen and Rook are dangerous
+		while(j > 0){
+			if(!(chessBoard[curY][j - 1].piece.getColor().equals("none"))){
+				String occCol = chessBoard[curY][j - 1].piece.getColor();
+				char occSym = Character.toLowerCase(chessBoard[curY][j - 1].piece.getSymbol(occCol));
+				if(occCol == danger && (occSym == 'q' || occSym == 'r')) return true;
+				else return false;
+			}
+			j--;
 		}
 		
 		return false;
 	}
 	
-	// Down Left
+	/**
+	 * Checks to see if the King is placed in check by a piece to its lower-left diagonal on the board.
+	 * For a piece immediately to the lower-left of the King, opposing Bishops, Kings, Queens,
+	 *    and Pawns(only White) are dangerous
+	 * Past that, only unblocked, opposing Bishops and Queens are dangerous.
+	 * 
+	 * @param curX
+	 * @param curY
+	 * @param danger
+	 * @return
+	 */
 	public boolean kinChkDwnLft(int curX, int curY, String danger){
 
 		int i = curY;
 		int j = curX;
 		
-		while(i < 7 && j > 0){
+		// Bishop, King, Queen, and Pawn are dangerous
+		if(i < 7 && j > 0){
 			if(!(chessBoard[i + 1][j - 1].piece.getColor().equals("none"))){
-				if(chessBoard[i + 1][j - 1].piece.getColor().equals(danger)) return true;
+				String occCol = chessBoard[i + 1][j - 1].piece.getColor();
+				char occSym = Character.toLowerCase(chessBoard[i + 1][j - 1].piece.getSymbol(occCol));
+				if(occCol == danger && (occSym == 'b' || occSym == 'k' || occSym == 'q' || occSym == 'p')) return true;
 				else return false;
 			}
+		}
+		
+		i++;
+		j--;
+		
+		// Bishop and Queen are dangerous
+		while(i < 7 && j > 0){
+			if(!(chessBoard[i + 1][j - 1].piece.getColor().equals("none"))){
+				String occCol = chessBoard[i + 1][j - 1].piece.getColor();
+				char occSym = Character.toLowerCase(chessBoard[i + 1][j - 1].piece.getSymbol(occCol));
+				if(occCol == danger && (occSym == 'b' || occSym == 'q')) return true;
+				else return false;
+			}
+			i++;
+			j--;
 		}
 		
 		return false;
 	}
 	
-	// Down
-	public boolean kinChckDwn(int curX, int curY, String danger){
+	/**
+	 * Checks to see if the King is placed in check below it on the board.
+	 * For a piece immediately below the King, opposing Kings, Queens, and Rooks are dangerous.
+	 * Past that, only unblocked, opposing Queens and Rooks are dangerous.
+	 * 
+	 * @param curX
+	 * @param curY
+	 * @param danger
+	 * @return
+	 */
+	public boolean kinChkDwn(int curX, int curY, String danger){
 
 		int i = curY;
 		
-		while(i < 7){
+		// King, Queen, and Rook are dangerous
+		if(i < 7){
 			if(!(chessBoard[i + 1][curX].piece.getColor().equals("none"))){
-				if(chessBoard[i + 1][curX].piece.getColor().equals(danger)) return true;
+				String occCol = chessBoard[i + 1][curX].piece.getColor();
+				char occSym = Character.toLowerCase(chessBoard[i + 1][curX].piece.getSymbol(occCol));
+				if(occCol == danger && (occSym == 'k' || occSym == 'q' || occSym == 'r')) return true;
 				else return false;
 			}
+		}
+		
+		i++;
+		
+		// Queen and Rook are dangerous
+		while(i < 7){
+			if(!(chessBoard[i + 1][curX].piece.getColor().equals("none"))){
+				String occCol = chessBoard[i + 1][curX].piece.getColor();
+				char occSym = Character.toLowerCase(chessBoard[i + 1][curX].piece.getSymbol(occCol));
+				if(occCol == danger && (occSym == 'q' || occSym == 'r')) return true;
+				else return false;
+			}
+			i++;
 		}
 		
 		return false;
 	}
 	
-	// Down Right
+	/**
+	 * Checks to see if the King is placed in check by a piece to its lower-right diagonal on the board.
+	 * For a piece immediately to the lower-right of the King, opposing Bishops, Kings, Queens,
+	 *    and Pawns(only White) are dangerous.
+	 * Past that, only unblocked, opposing Bishops and Queens are dangerous.
+	 * 
+	 * @param curX
+	 * @param curY
+	 * @param danger
+	 * @return
+	 */
 	public boolean kinChkDwnRt(int curX, int curY, String danger){
 
 		int i = curY;
 		int j = curX;
 		
+		// Bishop, King, Queen, and Pawn are dangerous
+		if(i < 7 && j < 7){
+			if(!(chessBoard[i + 1][j + 1].piece.getColor().equals("none"))){
+				String occCol = chessBoard[i + 1][j + 1].piece.getColor();
+				char occSym = Character.toLowerCase(chessBoard[i + 1][j + 1].piece.getSymbol(occCol));
+				if(occCol == danger && (occSym == 'b' || occSym == 'k' || occSym == 'q' || occSym == 'p')) return false;
+				else return true;
+			}
+		}
+		
+		i++;
+		j++;
+		
+		// Bishop and Queen are dangerous
 		while(i < 7 && j < 7){
 			if(!(chessBoard[i + 1][j + 1].piece.getColor().equals("none"))){
-				if(chessBoard[i + 1][j + 1].piece.getColor().equals(danger)) return true;
-				else return false;
+				String occCol = chessBoard[i + 1][j + 1].piece.getColor();
+				char occSym = Character.toLowerCase(chessBoard[i + 1][j + 1].piece.getSymbol(occCol));
+				if(occCol == danger && (occSym == 'b'|| occSym == 'q')) return false;
+				else return true;
 			}
+			i++;
+			j++;
 		}
 		
 		return false;
 	}
 	
-	// Right
+	/**
+	 * Checks to see if the King is placed in check by a piece to its right on the board.
+	 * For a piece immediately to the right of the King, opposing Kings, Queens, and Rooks are dangerous.
+	 * Past that, only unblocked, opposing Queens and Rooks are dangerous.
+	 * 
+	 * @param curX
+	 * @param curY
+	 * @param danger
+	 * @return
+	 */
 	public boolean kinChkRt(int curX, int curY, String danger){
 
 		int j = curX;
 		
-		while(j < 8){
+		// King, Queen, and Rook are dangerous
+		if(j < 7){
 			if(!(chessBoard[curY][j + 1].piece.getColor().equals("none"))){
-				if(chessBoard[curY][j + 1].piece.getColor().equals(danger)) return true;
+				String occCol = chessBoard[curY][j + 1].piece.getColor();
+				char occSym = Character.toLowerCase(chessBoard[curY][j + 1].piece.getSymbol(occCol));
+				if(occCol == danger && (occSym == 'k' || occSym == 'q' || occSym == 'r')) return true;
 				else return false;
 			}
+		}
+		
+		j++;
+		
+		// Queen and Rook are dangerous
+		while(j < 7){
+			if(!(chessBoard[curY][j + 1].piece.getColor().equals("none"))){
+				String occCol = chessBoard[curY][j + 1].piece.getColor();
+				char occSym = Character.toLowerCase(chessBoard[curY][j + 1].piece.getSymbol(occCol));
+				if(occCol == danger && (occSym == 'q' || occSym == 'r')) return true;
+				else return false;
+			}
+			j++;
 		}
 	
 		return false;
 		
 	}
 	
-	// Up Right
+	/**
+	 * Checks to see if the King is placed in check by a piece to its upper-right diagonal on the board.
+	 * For a piece immediately to the upper-right of the King, opposing Bishops, Kings, Queens,
+	 *    and Pawns(only Black) are dangerous.
+	 * Past that, only unblocked, opposing Bishops and Queens are dangerous.
+	 * 
+	 * @param curX
+	 * @param curY
+	 * @param danger
+	 * @return
+	 */
 	public boolean kinChkUpRt(int curX, int curY, String danger){
 
 		int i = curY;
 		int j = curX;
 		
-		while(i > 0 && j < 8){
+		// Bishop, King, Queen, and Pawn are dangerous
+		if(i > 0 && j < 7){
 			if(!(chessBoard[i - 1][j + 1].piece.getColor().equals("none"))){
-				if(chessBoard[i - 1][j + 1].piece.getColor().equals(danger)) return true;
+				String occCol = chessBoard[i - 1][j + 1].piece.getColor();
+				char occSym = Character.toLowerCase(chessBoard[i - 1][j + 1].piece.getSymbol(occCol));
+				if(occCol == danger && (occSym == 'b' || occSym == 'k' || occSym == 'q'|| occSym == 'p')) return true;
 				else return false;
 			}
+		}
+		
+		i--;
+		j++;
+		
+		// Bishop and Queen are dangerous
+		while(i > 0 && j < 7){
+			if(!(chessBoard[i - 1][j + 1].piece.getColor().equals("none"))){
+				String occCol = chessBoard[i - 1][j + 1].piece.getColor();
+				char occSym = Character.toLowerCase(chessBoard[i - 1][j + 1].piece.getSymbol(occCol));
+				if(occCol == danger && (occSym == 'b' || occSym == 'q')) return true;
+				else return false;
+			}
+			i--;
+			j++;
 		}
 		
 		return false;
 	}
 	
+	/**
+	 * Check to see if the King is placed in check by a Knight.
+	 * @param curX
+	 * @param curY
+	 * @param danger
+	 * @return
+	 */
 	// Knight Checks
 	public boolean kinKniChk(int curX, int curY, String danger){
 		
 		// Up Left
 		try{
-			if(chessBoard[curY - 2][curX - 1].piece.getColor().equals(danger)) return true;
+			System.out.println("Blah" + chessBoard[curY - 2][curX - 1].piece.getSymbol(chessBoard[curY - 2][curX -1].piece.getColor()));
+			if(Character.toLowerCase(chessBoard[curY - 2][curX - 1].piece.getSymbol(danger)) == 'n') return true;
 		}
 		catch(ArrayIndexOutOfBoundsException aioobe){
 		}
+		
 		// Up Right
 		try{
-			if(chessBoard[curY - 2][curX + 1].piece.getColor().equals(danger)) return true;
+			if(Character.toLowerCase(chessBoard[curY - 2][curX + 1].piece.getSymbol(danger)) == 'n') return true;
 		}
 		catch(ArrayIndexOutOfBoundsException aioobe){
 		}
+		
 		// Left Up
 		try{
-			if(chessBoard[curY - 1][curX - 2].piece.getColor().equals(danger)) return true;
+			if(Character.toLowerCase(chessBoard[curY - 1][curX - 2].piece.getSymbol(danger)) == 'n') return true;
 		}
 		catch(ArrayIndexOutOfBoundsException aioobe){
 		}
+		
 		// Right Up
 		try{
-			if(chessBoard[curY - 1][curX + 2].piece.getColor().equals(danger)) return true;
+			if(Character.toLowerCase(chessBoard[curY - 1][curX + 2].piece.getSymbol(danger)) == 'n') return true;
 		}
 		catch(ArrayIndexOutOfBoundsException aioobe){
 		}
+		
 		// Left Down
 		try{
-			if(chessBoard[curY + 1][curX - 2].piece.getColor().equals(danger)) return true;
+			if(Character.toLowerCase(chessBoard[curY + 1][curX - 2].piece.getSymbol(danger)) == 'n') return true;
 		}
 		catch(ArrayIndexOutOfBoundsException aioobe){
 		}
+		
 		// Right Down
 		try{
-			if(chessBoard[curY + 1][curX + 2].piece.getColor().equals(danger)) return true;
+			if(Character.toLowerCase(chessBoard[curY + 1][curX + 2].piece.getSymbol(danger)) == 'n') return true;
 		}
 		catch(ArrayIndexOutOfBoundsException aioobe){
 		}
+		
 		// Down Left
 		try{
-			if(chessBoard[curY + 2][curX - 1].piece.getColor().equals(danger)) return true;
+			if(Character.toLowerCase(chessBoard[curY + 2][curX - 1].piece.getSymbol(danger)) == 'n') return true;
 		}
 		catch(ArrayIndexOutOfBoundsException aioobe){
 		}
+		
+		// Down Right
 		try{
-			if(chessBoard[curY + 2][curX + 1].piece.getColor().equals(danger)) return true;
+			if(Character.toLowerCase(chessBoard[curY + 2][curX + 1].piece.getSymbol(danger)) == 'n') return true;
 		}
 		catch(ArrayIndexOutOfBoundsException aioobe){
 		}
-		// No piece puts King in check
+		
+		// No Knight puts King in check
 		return false;
 	}
     
@@ -565,6 +800,19 @@ public class Board {
     	chessBoard[7][5].setPiece(new Bishop("white", "f8"));
     	chessBoard[7][6].setPiece(new Knight("white", "g8"));
     	chessBoard[7][7].setPiece(new Rook("white", "h8"));
+    }
+    
+    /**
+     * tester board
+     * @return
+     */
+    public void setBoardStart2(){
+    	chessBoard[0][0].setPiece(new Rook("black", "a8"));
+    	chessBoard[0][1].setPiece(new Queen("black", "b8"));
+    	chessBoard[0][2].setPiece(new Knight("black", "c8"));
+    	chessBoard[0][3].setPiece(new Pawn("black", "d8"));
+    	
+    	chessBoard[3][3].setPiece(new King("white", "d4"));
     }
     
     public boolean validMove() {
