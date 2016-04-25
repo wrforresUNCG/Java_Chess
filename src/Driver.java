@@ -76,6 +76,8 @@ public class Driver {
                     //convert move to readable array coordinates, then move the piece
                     b.convert(move);
                 }
+                
+                pawnPromo(b, turnColor);
                 //after move
                 //check Board
                     //get occurrence
@@ -110,6 +112,8 @@ public class Driver {
                     b.convert(move);
                 }
                 
+                pawnPromo(b, turnColor);
+                
                 //if(b.validMove()){
                     turnColor = white;
                 //}
@@ -142,45 +146,69 @@ public class Driver {
     
     public  static void pawnPromo(Board b,String color){
         for (int i = 0; i < 8; i++) {
-                char x;
-                char xLow;
+            char x;
+            char xLow;
+            String myPos;
+            if (color.compareTo("white") == 0) {
                 x = b.getSpace(0, i).piece.getSymbol(color);
-                xLow = Character.toLowerCase(x);
-                if (xLow == 'n') {
-                    System.out.println("Congratulations! Please choose a promotion for your pawn"
-                            + "\n Rook"
-                            + "\n Kinght"
-                            + "\n Bishop"
-                            + "\n Queen");
-                    Scanner pawnPromoInput = new Scanner(System.in);
-                    String selection;
-                    selection = pawnPromoInput.nextLine();
-                    if (selection.toLowerCase().compareTo("rook") == 0) {
-                        System.out.println("you chose a rook");
-                        String myPos;
-                        myPos = b.getSpace(0, i).piece.getCurPos();
+                myPos = b.getSpace(0, i).piece.getCurPos();
+            } else {
+                x = b.getSpace(7, i).piece.getSymbol(color);
+                myPos = b.getSpace(7, i).piece.getCurPos();
+            }
+
+            xLow = Character.toLowerCase(x);
+            if (xLow == 'p') {
+                System.out.println("Congratulations! Please choose a promotion for your pawn"
+                        + "\n Rook"
+                        + "\n Kinght"
+                        + "\n Bishop"
+                        + "\n Queen");
+                Scanner pawnPromoInput = new Scanner(System.in);
+                String selection;
+                selection = pawnPromoInput.nextLine();
+                if (selection.toLowerCase().compareTo("rook") == 0) {
+                    System.out.println("you chose a rook");
+                    //String myPos;
+                    //myPos = b.getSpace(0, i).piece.getCurPos();                  
+                    if (color.compareTo("white") == 0) {
                         b.getSpace(0, i).setPiece(new Rook(color, myPos));
-                    } else if (selection.toLowerCase().compareTo("knight") == 0) {
-                        System.out.println("you  choose a knight");
-                        String myPos;
-                        myPos = b.getSpace(0, i).piece.getCurPos();
+                    } else {
+                        b.getSpace(7, i).setPiece(new Rook(color, myPos));
+                    }
+                } else if (selection.toLowerCase().compareTo("knight") == 0) {
+                    System.out.println("you  choose a knight");
+                    //String myPos;
+                    //myPos = b.getSpace(0, i).piece.getCurPos();
+                    if (color.compareTo("white") == 0) {
                         b.getSpace(0, i).setPiece(new Knight(color, myPos));
-                    } else if (selection.toLowerCase().compareTo("bishop") == 0) {
-                        System.out.println("you  choose a Bishop");
-                        String myPos;
-                        myPos = b.getSpace(0, i).piece.getCurPos();
+                    } else {
+                        b.getSpace(7, i).setPiece(new Knight(color, myPos));
+                    }
+                } else if (selection.toLowerCase().compareTo("bishop") == 0) {
+                    System.out.println("you  choose a Bishop");
+                    //String myPos;
+                    //myPos = b.getSpace(0, i).piece.getCurPos();
+                    if (color.compareTo("white") == 0) {
                         b.getSpace(0, i).setPiece(new Bishop(color, myPos));
-                    } else if (selection.toLowerCase().compareTo("queen") == 0) {
-                        System.out.println("you  choose a Queen");
-                        String myPos;
-                        myPos = b.getSpace(0, i).piece.getCurPos();
+                    } else {
+                        b.getSpace(7, i).setPiece(new Bishop(color, myPos));
+                    }
+                } else if (selection.toLowerCase().compareTo("queen") == 0) {
+                    System.out.println("you  choose a Queen");
+                    //String myPos;
+                    //myPos = b.getSpace(0, i).piece.getCurPos();
+                    if (color.compareTo("white") == 0) {
                         b.getSpace(0, i).setPiece(new Queen(color, myPos));
                     } else {
-                        System.out.println("TryAgain");
+                        b.getSpace(7, i).setPiece(new Queen(color, myPos));
                     }
-
+                } else {
+                    System.out.println("TryAgain");
                 }
 
             }
+
+        }
     }//end of pawn promo method
 }
