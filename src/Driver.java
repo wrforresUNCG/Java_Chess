@@ -74,7 +74,7 @@ public class Driver {
                 }
                 else{
                     //convert move to readable array coordinates, then move the piece
-                    b.convert(move);
+                    b.convert(move, turnColor);
                 }
                 
                 pawnPromo(b, turnColor);
@@ -109,7 +109,7 @@ public class Driver {
                 }
                 else{
                     //convert move to readable array coordinates, then move the piece
-                    b.convert(move);
+                    b.convert(move, turnColor);
                 }
                 
                 pawnPromo(b, turnColor);
