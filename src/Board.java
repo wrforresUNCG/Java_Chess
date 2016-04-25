@@ -26,11 +26,12 @@ public class Board {
         }
     }
     
-     public void movePiece(int startX, int startY, int endX, int endY){
+     public void movePiece(int startX, int startY, int endX, int endY, String color){
     	 boolean isValMov = false;
     	 Piece movingP;
         movingP = this.chessBoard[startY][startX].getPiece();
-        if((movingP != null) && chessBoard[startY][startX].piece.validMove(chessBoard, startX, startY, endX, endY)){
+        if((movingP != null) && chessBoard[startY][startX].piece.validMove(chessBoard, startX, startY, endX, endY) &&
+                chessBoard[startY][startX].piece.getColor().equals(color)){
         	this.chessBoard[startY][startX].removePiece(startY, startX);
         	this.chessBoard[endY][endX].setPiece(movingP);
         	movingP.setCurX(endX);
@@ -58,7 +59,7 @@ public class Board {
           System.out.println("   a  b  c  d  e  f  g  h");
     }
     
-    public void convert(String pos){
+    public void convert(String pos, String color){
     	startX = -1;
     	startY = -1;
     	
@@ -201,7 +202,7 @@ public class Board {
             System.out.println("||||| endY = " + endY);
             System.out.println("***** NOW TO MOVE");
             /////////////
-            movePiece(startX, startY, endX, endY);
+            movePiece(startX, startY, endX, endY, color);
         }
 
     }
