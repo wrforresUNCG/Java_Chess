@@ -23,7 +23,7 @@ public class Queen extends Piece{
 	}
 	
 	public Queen(String color, String curPos){
-		String type = "Queen";
+		this.type = "Queen";
 		char symbol = getSymbol(color);
 		this.color = color;
 		this.curPos = curPos;
@@ -188,6 +188,11 @@ public class Queen extends Piece{
 	public boolean validCap() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+	
+	@Override
+	public String getType(){
+		return this.type;
 	}
 
 	@Override

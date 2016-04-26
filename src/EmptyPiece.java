@@ -35,6 +35,11 @@ public class EmptyPiece extends Piece{
 	public String getColor() {
 		return this.color;
 	}
+	
+	@Override
+	public String getType() {
+		return this.type;
+	}
 
 	@Override
 	public char getSymbol(String color) {

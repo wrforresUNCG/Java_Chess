@@ -23,7 +23,7 @@ public class Bishop extends Piece{
 	}
 	
 	public Bishop(String color, String curPos){
-		String type = "Bishop";
+		this.type = "Bishop";
 		char symbol = getSymbol(color);
 		this.color = color;
 		this.curPos = curPos;
@@ -166,6 +166,11 @@ public class Bishop extends Piece{
 	public boolean validCap() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+	
+	@Override
+	public String getType(){
+		return this.type;
 	}
 
 	@Override

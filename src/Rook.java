@@ -15,7 +15,8 @@ public class Rook extends Piece{
 	private boolean firstMove;
 	
 	public Rook(){
-		String type = "Rook";
+		//String type = "Rook";
+		this.type = "Rook";
 		char symbol = 'R';
 		String color;
 		String curPos;
@@ -25,7 +26,8 @@ public class Rook extends Piece{
 	}
 	
 	public Rook(String color, String curPos){
-		String type = "Rook";
+		//String type = "Rook";
+		this.type = "Rook";
 		char symbol = getSymbol(color);
 		this.color = color;
 		this.curPos = curPos;
@@ -120,6 +122,11 @@ public class Rook extends Piece{
 	public boolean validCap() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+	
+	@Override
+	public String getType(){
+		return this.type;
 	}
 
 	@Override

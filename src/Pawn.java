@@ -24,7 +24,7 @@ public class Pawn extends Piece{
 	}
 	
 	public Pawn(String color, String curPos){
-		String type = "Pawn";
+		this.type = "Pawn";
 		char symbol = getSymbol(color);
 		this.color = color;
 		this.curPos = curPos;
@@ -155,6 +155,11 @@ public class Pawn extends Piece{
 	public boolean validCap() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+	
+	@Override
+	public String getType(){
+		return this.type;
 	}
 
 	@Override

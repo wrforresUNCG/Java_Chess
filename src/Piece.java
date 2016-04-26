@@ -13,6 +13,8 @@ public abstract class Piece {
 	
 	public abstract boolean validCap();
 	
+	public abstract String getType();
+	
 	public abstract String getColor();
 	
 	public abstract char getSymbol(String color);

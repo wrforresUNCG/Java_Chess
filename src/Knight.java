@@ -23,7 +23,7 @@ public class Knight extends Piece{
 	}
 	
 	public Knight(String color, String curPos){
-		String type = "Knight";
+		this.type = "Knight";
 		char symbol = getSymbol(color);
 		this.color = color;
 		this.curPos = curPos;
@@ -57,6 +57,11 @@ public class Knight extends Piece{
 	public boolean validCap() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+	
+	@Override
+	public String getType(){
+		return this.type;
 	}
 
 	@Override

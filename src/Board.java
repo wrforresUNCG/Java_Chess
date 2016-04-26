@@ -189,18 +189,8 @@ public class Board {
         	if(chessBoard[startY][startX].getSymbol().equals("|_|")) valIn = false;
         }
 
-        //THIS BLOCK IS FOR TESTING PURPOSES
-        //REMOVE IN FINAL .JAR
+
         if(valIn == true){
-        	/////////////
-        	System.out.println("***** startPos = " + startPos);
-        	System.out.println("||||| endPos = " + endPos);
-            System.out.println("||||| startX = " + startX);
-            System.out.println("||||| startY = " + startY);
-            System.out.println("||||| endX = " + endX);
-            System.out.println("||||| endY = " + endY);
-            System.out.println("***** NOW TO MOVE");
-            /////////////
             movePiece(startX, startY, endX, endY, color);
         }
 
@@ -222,31 +212,22 @@ public class Board {
 		else if(teamOcc.equals("black")) danger = "white";
 
 		// Up
-		System.out.println("Beginning up");
     	if(kinChkUp(curX, curY, danger)) return true;
     	// Up Left
-    	System.out.println("beginning up left");
     	if(kinChkUpLft(curX, curY, danger)) return true;
     	// Left
-    	System.out.println("Beginning left");
     	if(kinChkLft(curX, curY, danger)) return true;
     	// Down Left;
-    	System.out.println("Beginning down left");
     	if(kinChkDwnLft(curX, curY, danger)) return true;
     	// Down
-    	System.out.println("Beginning down");
     	if(kinChkDwn(curX, curY, danger)) return true;
     	// Down Right
-    	System.out.println("Beginning down right");
     	if(kinChkDwnRt(curX, curY, danger)) return true;
     	// Right
-    	System.out.println("Beginning right");
     	if(kinChkRt(curX, curY, danger)) return true;
     	// Up Right
-    	System.out.println("Beginning up right");
     	if(kinChkUpRt(curX, curY, danger)) return true;
     	// Knight Checks
-    	System.out.println("Beginning knight checks");
     	if(kinKniChk(curX, curY, danger)) return true;
     	// Nothing puts the King in check
     	return false;
@@ -481,8 +462,8 @@ public class Board {
 			if(!(chessBoard[i + 1][j + 1].piece.getColor().equals("none"))){
 				String occCol = chessBoard[i + 1][j + 1].piece.getColor();
 				char occSym = Character.toLowerCase(chessBoard[i + 1][j + 1].piece.getSymbol(occCol));
-				if(occCol == danger && (occSym == 'b' || occSym == 'k' || occSym == 'q' || occSym == 'p')) return false;
-				else return true;
+				if(occCol == danger && (occSym == 'b' || occSym == 'k' || occSym == 'q' || occSym == 'p')) return true;
+				else return false;
 			}
 		}
 		
@@ -494,8 +475,8 @@ public class Board {
 			if(!(chessBoard[i + 1][j + 1].piece.getColor().equals("none"))){
 				String occCol = chessBoard[i + 1][j + 1].piece.getColor();
 				char occSym = Character.toLowerCase(chessBoard[i + 1][j + 1].piece.getSymbol(occCol));
-				if(occCol == danger && (occSym == 'b'|| occSym == 'q')) return false;
-				else return true;
+				if(occCol == danger && (occSym == 'b'|| occSym == 'q')) return true;
+				else return false;
 			}
 			i++;
 			j++;
@@ -601,7 +582,6 @@ public class Board {
 		
 		// Up Left
 		try{
-			System.out.println("Blah" + chessBoard[curY - 2][curX - 1].piece.getSymbol(chessBoard[curY - 2][curX -1].piece.getColor()));
 			if(Character.toLowerCase(chessBoard[curY - 2][curX - 1].piece.getSymbol(danger)) == 'n') return true;
 		}
 		catch(ArrayIndexOutOfBoundsException aioobe){
@@ -814,10 +794,12 @@ public class Board {
     	chessBoard[0][0].setPiece(new Rook("black", "a8"));
     	chessBoard[0][1].setPiece(new Queen("black", "b8"));
     	chessBoard[0][2].setPiece(new Knight("black", "c8"));
-    	chessBoard[0][3].setPiece(new King("black", "d8"));
+    	chessBoard[6][0].setPiece(new Pawn("black", "a2"));
+    	chessBoard[0][6].setPiece(new King("black", "h8"));
     	
     	chessBoard[3][3].setPiece(new King("white", "d4"));
     	chessBoard[2][7].setPiece(new Pawn("white", "h3"));
+    	chessBoard[7][3].setPiece(new Pawn("white", "d2"));
     }
     
     public boolean validMove() {

@@ -57,7 +57,7 @@ public class Driver {
 //            	System.out.println("King Pos + [" + kinY + "][" + kinX + "]");
 //            	if(kinX > -1 && kinY > -1) inCheck = b.kinChk(kinX, kinY);
   
-            	boolean inCheck = knInCk(b);
+            	boolean inCheck = knInCk(b, turnColor);
             	
             	//if in check let the user know, and then have to get out of check
                 if(inCheck == true) System.out.println("White is in check");
@@ -85,9 +85,9 @@ public class Driver {
                 }
                 else{
                     //convert move to readable array coordinates, then move the piece
-                    b.convert(move, turnColor);
+                    //b.convert(move, turnColor);
                     
-                    System.out.println(val);
+                    System.out.println("This is a " + val);
                     if(val){
                         b.convert(move, turnColor);
                     }
@@ -109,7 +109,7 @@ public class Driver {
             
             else if(turnColor.equals("black")){
             	
-            	boolean inCheck = knInCk(b);
+            	boolean inCheck = knInCk(b, turnColor);
             	
             	//if in check let the user know, and then have to get out of check
                 if(inCheck == true) System.out.println("Black is in check");
@@ -140,7 +140,7 @@ public class Driver {
                 }
                 else{
                     //convert move to readable array coordinates, then move the piece
-                    b.convert(move, turnColor);
+                    //b.convert(move, turnColor);
                     
                     if(val){
                         b.convert(move, turnColor);
@@ -259,23 +259,28 @@ public class Driver {
     
     
     //
-	public static boolean knInCk(Board b){
+	public static boolean knInCk(Board b, String turnColor){
 		int i = 0, j = 0, kinX = -1, kinY = -1;
 		boolean chkForKin = false;
-		while(chkForKin == false){
-		while(j < 8 && chkForKin == false){
-			if(b.chessBoard[i][j].piece.getSymbol(b.chessBoard[i][j].piece.getColor()) == 'K'){
-				b.chessBoard[i][j].piece.setCurX(j);
-				b.chessBoard[i][j].piece.setCurY(i);
-				kinX = b.chessBoard[i][j].piece.getCurX();
-				kinY = b.chessBoard[i][j].piece.getCurY();
-				chkForKin = true;
+		while(chkForKin == false && i < 8){
+			System.out.println("loop one " + i + j);
+			while(j < 8 && chkForKin == false){
+				System.out.println("loop two " + i + j);
+				//if(Character.toLowerCase(b.chessBoard[i][j].piece.getSymbol(turnColor)) == 'k' && b.chessBoard[i][j].piece.getColor().equals(turnColor)){
+				System.out.println(b.chessBoard[i][j].piece.getType());
+				
+				if(b.chessBoard[i][j].piece.getType().equals("King") && b.chessBoard[i][j].piece.getColor().equals(turnColor)){	
+					b.chessBoard[i][j].piece.setCurX(j);
+					b.chessBoard[i][j].piece.setCurY(i);
+					kinX = b.chessBoard[i][j].piece.getCurX();
+					kinY = b.chessBoard[i][j].piece.getCurY();
+					chkForKin = true;
+				}
+				j++;
 			}
-			j++;
-		}
 		//if(i == 7) chkForKin = false; //if you have check through [i][j]==[7][7] there is no white King
-		i++;
-		j = 0;
+			i++;
+			j = 0;
 		}
 		boolean inCheck = false;
 		System.out.println("King Pos + [" + kinY + "][" + kinX + "]");

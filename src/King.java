@@ -25,7 +25,7 @@ public class King extends Piece{
 	}
 	
 	public King(String color, String curPos){
-		String type = "King";
+		this.type = "King";
 		char symbol = getSymbol(color);
 		this.color = color;
 		this.curPos = curPos;
@@ -54,6 +54,11 @@ public class King extends Piece{
 	public boolean validCap() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+	
+	@Override
+	public String getType(){
+		return this.type;
 	}
 
 	@Override
