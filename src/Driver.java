@@ -82,6 +82,7 @@ public class Driver {
                     b.convert(move, turnColor);
                     
                     if(b.validMove()){
+                        pawnPromo(b, turnColor);
                         turnColor = black;
                     }
                     else{
@@ -89,7 +90,7 @@ public class Driver {
                     }
                 }
                 
-                pawnPromo(b, turnColor);
+                
                 //after move
                 //check Board
                     //get occurrence
@@ -124,6 +125,7 @@ public class Driver {
                     b.convert(move, turnColor);
                     
                     if(b.validMove()){
+                        pawnPromo(b, turnColor);
                         turnColor = white;
                     }
                     else{
@@ -131,7 +133,7 @@ public class Driver {
                     }
                 }
                 
-                pawnPromo(b, turnColor);
+                
             }
             
             //display board
@@ -155,20 +157,29 @@ public class Driver {
     }
     
     public  static void pawnPromo(Board b,String color){
+        
         for (int i = 0; i < 8; i++) {
             char x;
             char xLow;
             String myPos;
+            String pawnColor;
             if (color.compareTo("white") == 0) {
+                System.out.println("hit here white");
                 x = b.getSpace(0, i).piece.getSymbol(color);
                 myPos = b.getSpace(0, i).piece.getCurPos();
+                pawnColor = b.getSpace(0, i).piece.getColor();
+                
             } else {
+                System.out.println("hit here black");
                 x = b.getSpace(7, i).piece.getSymbol(color);
                 myPos = b.getSpace(7, i).piece.getCurPos();
+                pawnColor = b.getSpace(7, i).piece.getColor();
             }
 
             xLow = Character.toLowerCase(x);
-            if (xLow == 'p') {
+            System.out.println("char = " + xLow);
+            
+            if (xLow == 'p'&& color.compareTo(pawnColor)==0) {
                 System.out.println("Congratulations! Please choose a promotion for your pawn"
                         + "\n Rook"
                         + "\n Kinght"
@@ -215,10 +226,12 @@ public class Driver {
                     }
                 } else {
                     System.out.println("TryAgain");
+                    pawnPromo(b, color);
                 }
 
             }
 
         }
+        //end while
     }//end of pawn promo method
 }
