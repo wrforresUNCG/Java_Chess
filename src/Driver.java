@@ -21,6 +21,7 @@ public class Driver {
         String turnColor;
         boolean win = false;
         String move;
+        boolean val;
         
         Board b = new Board();
         intro();
@@ -63,6 +64,7 @@ public class Driver {
                 
             	System.out.println("It is the white's turn, enter your move: ");
                 move = userInput.nextLine().toLowerCase();
+                val = (move.contains(":") || move.contains("-"));
                 if(move.compareTo("quit") == 0){
                     break play;
                 }
@@ -85,13 +87,17 @@ public class Driver {
                     //convert move to readable array coordinates, then move the piece
                     b.convert(move, turnColor);
                     
-                    if(b.validMove()){
+                    System.out.println(val);
+                    if(val){
+                        b.convert(move, turnColor);
+                    }
+                }
+                 if(b.validMove() && val){
                         pawnPromo(b, turnColor);
                         turnColor = black;
                     }
-                    else{
+                else{
                         System.out.println("That is not a valid move, please reenter a valid move:");
-                    }
                 }
                 
                 
@@ -111,6 +117,7 @@ public class Driver {
             	
                 System.out.println("It is black's turn, enter your move: ");
                 move = userInput.nextLine().toLowerCase();
+                val = (move.contains(":") || move.contains("-"));
                 if(move.compareTo("quit") == 0){
                     break play;
                 }
@@ -135,13 +142,17 @@ public class Driver {
                     //convert move to readable array coordinates, then move the piece
                     b.convert(move, turnColor);
                     
-                    if(b.validMove()){
+                    if(val){
+                        b.convert(move, turnColor);
+                    }
+                }
+                if(b.validMove() && val){
                         pawnPromo(b, turnColor);
                         turnColor = white;
+                        
                     }
-                    else{
+                else{
                         System.out.println("That is not a valid move, please reenter a valid move:");
-                    }
                 }
                 
                 
