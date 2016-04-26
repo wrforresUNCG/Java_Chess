@@ -27,7 +27,7 @@ public class Board {
     }
     
      public void movePiece(int startX, int startY, int endX, int endY, String color){
-    	 boolean isValMov = false;
+    	 //boolean isValMov = false;
     	 Piece movingP;
         movingP = this.chessBoard[startY][startX].getPiece();
         if((movingP != null) && chessBoard[startY][startX].piece.validMove(chessBoard, startX, startY, endX, endY) &&
@@ -811,9 +811,10 @@ public class Board {
     	chessBoard[0][0].setPiece(new Rook("black", "a8"));
     	chessBoard[0][1].setPiece(new Queen("black", "b8"));
     	chessBoard[0][2].setPiece(new Knight("black", "c8"));
-    	chessBoard[0][3].setPiece(new Pawn("black", "d8"));
+    	chessBoard[0][3].setPiece(new King("black", "d8"));
     	
     	chessBoard[3][3].setPiece(new King("white", "d4"));
+    	chessBoard[2][7].setPiece(new Pawn("white", "h3"));
     }
     
     public boolean validMove() {
