@@ -15,7 +15,7 @@ public class Board {
 	private String startPos;
     private String endPos;
     int startX, startY, endX, endY;
-    private boolean isValMov;
+    private boolean isValMov = false;
     
     public Board(){
         
@@ -27,7 +27,7 @@ public class Board {
     }
     
      public void movePiece(int startX, int startY, int endX, int endY, String color){
-    	 //boolean isValMov = false;
+    
     	 Piece movingP;
         movingP = this.chessBoard[startY][startX].getPiece();
         if((movingP != null) && chessBoard[startY][startX].piece.validMove(chessBoard, startX, startY, endX, endY) &&
@@ -39,7 +39,6 @@ public class Board {
         	isValMov = true;
         }
         else {
-             System.out.println("Invalid Move. You lose your turn.");
              isValMov = false;
         }
      }
@@ -683,6 +682,7 @@ public class Board {
                 movingP = this.chessBoard[7][7].getPiece();
                 this.chessBoard[7][7].removePiece(7, 7);
                 this.chessBoard[7][5].setPiece(movingP);
+                isValMov = true;
                 return true;
             }
 
@@ -708,6 +708,7 @@ public class Board {
                 movingP = this.chessBoard[0][7].getPiece();
                 this.chessBoard[0][7].removePiece(0, 7);
                 this.chessBoard[0][5].setPiece(movingP);
+                isValMov = true;
                 return true;
             }
         }
@@ -739,6 +740,7 @@ public class Board {
                 movingP = this.chessBoard[7][0].getPiece();
                 this.chessBoard[7][0].removePiece(7, 0);
                 this.chessBoard[7][3].setPiece(movingP);
+                isValMov = true;
                 return true;
             }
         } else if (color.equals("black")) {
@@ -762,6 +764,7 @@ public class Board {
                 movingP = this.chessBoard[0][0].getPiece();
                 this.chessBoard[0][0].removePiece(0, 0);
                 this.chessBoard[0][3].setPiece(movingP);
+                isValMov = true;
                 return true;
             }
         }
