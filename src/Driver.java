@@ -58,7 +58,7 @@ public class Driver {
                 if(inCheck == true) System.out.println("White is in check");
                 
             	System.out.println("It is the white's turn, enter your move: ");
-                move = userInput.nextLine();
+                move = userInput.nextLine().toLowerCase();
                 if(move.compareTo("quit") == 0){
                     break play;
                 }
@@ -72,9 +72,21 @@ public class Driver {
                         System.out.println("You cannot castle on your King side");
                     }
                 }
+                else if(move.equals("reset")){
+                    System.out.println("The game has been reset.");
+                    b = new Board();
+                    b.setBoardStart();
+                }
                 else{
                     //convert move to readable array coordinates, then move the piece
                     b.convert(move, turnColor);
+                    
+                    if(b.validMove()){
+                        turnColor = black;
+                    }
+                    else{
+                        System.out.println("That is not a valid move, please reenter a valid move:");
+                    }
                 }
                 
                 pawnPromo(b, turnColor);
@@ -82,18 +94,11 @@ public class Driver {
                 //check Board
                     //get occurrence
                 //pawn promotion
-                
-                //if(b.validMove()){
-                    turnColor = black;
-                //}
-                //else{
-                //    System.out.println("That is not a valid move, please reenter a valid move:");
-                //}
             }
             
             else if(turnColor.equals("black")){
                 System.out.println("It is black's turn, enter your move: ");
-                move = userInput.nextLine();
+                move = userInput.nextLine().toLowerCase();
                 if(move.compareTo("quit") == 0){
                     break play;
                 }
@@ -107,20 +112,26 @@ public class Driver {
                         System.out.println("You cannot castle on your King side");
                     }
                 }
+                else if(move.equals("reset")){
+                    turnColor = white;
+                    System.out.println("The game has been reset.");
+                    intro();
+                    b = new Board();
+                    b.setBoardStart();
+                }
                 else{
                     //convert move to readable array coordinates, then move the piece
                     b.convert(move, turnColor);
+                    
+                    if(b.validMove()){
+                        turnColor = white;
+                    }
+                    else{
+                        System.out.println("That is not a valid move, please reenter a valid move:");
+                    }
                 }
                 
                 pawnPromo(b, turnColor);
-                
-                //if(b.validMove()){
-                    turnColor = white;
-                //}
-                //else{
-                //   System.out.println("That is not a valid move, please reenter a valid move:");
-                //}
-                
             }
             
             //display board
@@ -138,7 +149,6 @@ public class Driver {
         System.out.println("The white players goes first.");
         System.out.println("Enter each move in the form of <start coordinate>:<end coordinate>");
         System.out.println("Enter '0-0' for a king side castle and '0-0-0' for a queen side castle");
-        System.out.println("Note: attempting to move a space with no piece will forfeit the turn");
         System.out.println("Type 'quit' at anytime to quit the match.");
         
         
