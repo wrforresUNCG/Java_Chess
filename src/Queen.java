@@ -13,24 +13,32 @@ public class Queen extends Piece{
 	private int curX;
 	private int curY;
 	
+	/**
+	 * Default constructor for a Queen.
+	 */
 	public Queen(){
 		String type = "Queen";
 		char symbol = 'Q';
 		String color;
 		String curPos;
-		//int curX; needs a converter method
-		//int curY; needs a converter method
 	}
 	
+	/**
+	 * Constructor for a Queen with provided color and position.
+	 * 
+	 * @param color
+	 * @param curPos
+	 */
 	public Queen(String color, String curPos){
 		this.type = "Queen";
 		char symbol = getSymbol(color);
 		this.color = color;
 		this.curPos = curPos;
-		//int curX; needs a converter method
-		//int curY; needs a converter method
 	}
 	
+	/**
+	 * Determines if a move is valid using the Queen's movement rules.
+	 */
 	@Override
 	public boolean validMove(Space[][] chessBoard, int staX, int staY, int tarX, int tarY) {
 		// A Queen moves vertically, horizontally, or diagonally by N spaces
@@ -182,12 +190,6 @@ public class Queen extends Piece{
 		if(chessBoard[tarY][tarX].piece.getColor().equals(teamOcc)) return false;
 		
 		return true;
-	}
-
-	@Override
-	public boolean validCap() {
-		// TODO Auto-generated method stub
-		return false;
 	}
 	
 	@Override

@@ -14,24 +14,32 @@ public class Pawn extends Piece{
 	private int curY;
 	private boolean firstMove = true;
 	
+	/**
+	 * Default constructor for a Pawn.
+	 */
 	public Pawn(){
 		String type = "Pawn";
 		char symbol = 'P';
 		String color;
 		String curPos;
-		//int curX; needs a converter method
-		//int curY; needs a converter method
 	}
 	
+	/**
+	 * Constructor for a Pawn with provided color and position.
+	 *
+	 * @param color
+	 * @param curPos
+	 */
 	public Pawn(String color, String curPos){
 		this.type = "Pawn";
 		char symbol = getSymbol(color);
 		this.color = color;
 		this.curPos = curPos;
-		//int curX; needs a converter method
-		//int curY; needs a converter method
-	}
+		}
 	
+	/**
+	 * Determines if a move is valid using the Pawn's movement rules.
+	 */
 	@Override
 	public boolean validMove(Space[][] chessBoard, int staX, int staY, int tarX, int tarY) {
 		// Determine color of piece to be moved
@@ -39,7 +47,7 @@ public class Pawn extends Piece{
 
         	// Calculate Valid Move Conditions
         	boolean valMov = false;
-	 	//Allow the pawn to move two places if it is its first move
+        	//Allow the pawn to move two places if it is its first move
         	if (firstMove) {
 
             		if (teamOcc.equals("white") && (((tarY - staY) == -1) || (tarY - staY == -2))) {
@@ -149,12 +157,6 @@ public class Pawn extends Piece{
 		if(chessBoard[tarY][tarX].piece.getColor().equals("none")) return false;
 		// Space is occupied by other color, capture can be made.
 		return true;
-	}
-
-	@Override
-	public boolean validCap() {
-		// TODO Auto-generated method stub
-		return false;
 	}
 	
 	@Override

@@ -18,9 +18,12 @@
         piece = new EmptyPiece(column, row);
     }
     
+    /**
+     * Set a piece in the Space.
+     * 
+     * @param movPiece
+     */
     public void setPiece(Piece movPiece){
-        //is there anothe piece here? if so, capture piece
-        
         piece = movPiece; //set piece in space
         symbol = ("|" + piece.getSymbol(piece.getColor()) + "|");
     }
@@ -33,6 +36,12 @@
         return piece;
     }
     
+    /**
+     * Remove a piece from a specified Space
+     * 
+     * @param y
+     * @param x
+     */
     public void removePiece(int y, int x){
         piece = new EmptyPiece(y, x);
         symbol = ("|" + piece.getSymbol(piece.getColor()) + "|");

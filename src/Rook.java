@@ -14,28 +14,33 @@ public class Rook extends Piece{
 	private int curY;
 	private boolean firstMove;
 	
+	/**
+	 * Default constructor for a Rook.
+	 */
 	public Rook(){
-		//String type = "Rook";
 		this.type = "Rook";
 		char symbol = 'R';
 		String color;
 		String curPos;
 		this.firstMove = true;
-		//int curX; needs a converter method
-		//int curY; needs a converter method
 	}
 	
+	/**
+	 * Constructor for a Rook with provided color and position.
+	 * @param color
+	 * @param curPos
+	 */
 	public Rook(String color, String curPos){
-		//String type = "Rook";
 		this.type = "Rook";
 		char symbol = getSymbol(color);
 		this.color = color;
 		this.curPos = curPos;
 		this.firstMove = true;
-		//int curX; needs a converter method
-		//int curY; needs a converter method
 	}
 	
+	/**
+	 * Determines if a move is valid using the Rook's movement rules.
+	 */
 	@Override
 	public boolean validMove(Space[][] chessBoard, int staX, int staY, int tarX, int tarY) {
 		// A rook moves vertically or horizontally by N spaces
@@ -116,12 +121,6 @@ public class Rook extends Piece{
 		if(chessBoard[tarY][tarX].piece.getColor().equals(teamOcc)) return false;
 		
 		return true;
-	}
-	
-	@Override
-	public boolean validCap() {
-		// TODO Auto-generated method stub
-		return false;
 	}
 	
 	@Override

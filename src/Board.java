@@ -17,8 +17,10 @@ public class Board {
     int startX, startY, endX, endY;
     private boolean isValMov = false;
     
-    public Board(){
-        
+    /**
+     * Constructor for a Board
+     */
+    public Board(){    
         for(int i=0;i<chessBoard.length;i++){
             for(int j=0;j<chessBoard.length;j++){
                 chessBoard[i][j]= new Space(i,j);
@@ -26,23 +28,38 @@ public class Board {
         }
     }
     
+    /**
+     * Moves a piece at set of starting coordinates to a set of target coordinates.
+     * When the piece has been moved to the ending coordinates, it's symbol is set
+     *    reflecting it's proper color.
+     * 
+     * @param startX
+     * @param startY
+     * @param endX
+     * @param endY
+     * @param color
+     */
      public void movePiece(int startX, int startY, int endX, int endY, String color){
     
     	 Piece movingP;
-        movingP = this.chessBoard[startY][startX].getPiece();
+    	 movingP = this.chessBoard[startY][startX].getPiece();
+    	 
         if((movingP != null) && chessBoard[startY][startX].piece.validMove(chessBoard, startX, startY, endX, endY) &&
                 chessBoard[startY][startX].piece.getColor().equals(color)){
-        	this.chessBoard[startY][startX].removePiece(startY, startX);
-        	this.chessBoard[endY][endX].setPiece(movingP);
-        	movingP.setCurX(endX);
-        	movingP.setCurY(endX);
+        	this.chessBoard[startY][startX].removePiece(startY, startX);	// Remove piece from starting coordinates
+        	this.chessBoard[endY][endX].setPiece(movingP);	// Set piece in ending coordinates
+        	movingP.setCurX(endX);	// Updates current X coordinate
+        	movingP.setCurY(endX);	// Updates current Y coordinate
         	isValMov = true;
         }
         else {
-             isValMov = false;
+             isValMov = false;	// No piece was found at the starting coordinates
         }
      }
 
+     /**
+      * Prints a textual representation of the current board state to the console.
+      */
      public void printBoard(){
          System.out.println("\n --------------------------");
          
@@ -58,6 +75,12 @@ public class Board {
           System.out.println("   a  b  c  d  e  f  g  h");
     }
     
+     /**
+      * Convert user-provided input, in Chess notation, to proper array coordinate form.
+      * 
+      * @param pos
+      * @param color
+      */
     public void convert(String pos, String color){
     	startX = -1;
     	startY = -1;
@@ -181,7 +204,7 @@ public class Board {
             }
         }
         
-        
+        // Determine if array coordinates constitute a valid move.
         boolean valIn = true;
         if(startX < 0 || startX > 7) valIn = false;
         if(startY < 0 || startY > 7) valIn = false;
@@ -189,23 +212,30 @@ public class Board {
         	if(chessBoard[startY][startX].getSymbol().equals("|_|")) valIn = false;
         }
 
-
-        if(valIn == true){
+        // Movement is valid, make the move.
+        if(valIn == true){        	
             movePiece(startX, startY, endX, endY, color);
         }
 
     }
     
+    
     public Space getSpace(int i, int j){
             return chessBoard[i][j];
         }
     
-    
+    /**
+     * Calls a sequence of methods to determine if a specified King has been
+     *    placed in check by any piece on the board.
+     *    
+     * @param curX
+     * @param curY
+     * @return
+     */
     public Boolean kinChk(int curX, int curY){
     	// If the King is in check from any movement of an opponent's piece, return true
     	
 		// Determine color of a pieces that would put King in check
-    	System.out.println("Starting king Check : curXcurY " + curX + curY);
 		String teamOcc = chessBoard[curY][curX].piece.getColor();
 		String danger = "";
 		if(teamOcc.equals("white")) danger = "black";
@@ -640,10 +670,16 @@ public class Board {
 		return false;
 	}
     
-    
+    	/**
+    	 * Checks to see if the King and Rook match conditions to perform a King Side Castle
+    	 * Both must be in starting positions and have not been moved.
+    	 * The spaces between the King and the Rook must be empty.
+    	 * @param color
+    	 * @return
+    	 */
        public boolean castleKingSide(String color) {
         if (color.equals("white")) {
-            //Check if the king will be in check when moved
+
             if (this.chessBoard[7][4].piece.getSymbol(color) == 'K') {
                 if (!(this.chessBoard[7][4].piece.firstMove())) {
                     return false;
@@ -669,7 +705,7 @@ public class Board {
         } 
         
         else if (color.equals("black")) {
-            //Check if the king will be in check when moved
+            
             if (this.chessBoard[0][4].piece.getSymbol(color) == 'k') {
                 if (!(this.chessBoard[0][4].piece.firstMove())) {
                     return false;
@@ -698,9 +734,16 @@ public class Board {
 
     }
     
+       /**
+        * Checks to see if the King and Rook match conditions to perform a Queen Side Castle
+    	* Both must be in starting positions and have not been moved.
+    	* The spaces between the King and the Rook must be empty.
+        * @param color
+        * @return
+        */
     public boolean castleQueenSide(String color) {
         if (color.equals("white")) {
-            //Check if the king will be in check when moved
+            
             if (this.chessBoard[7][4].piece.getSymbol(color) == 'K') {
                 if (!(this.chessBoard[7][4].piece.firstMove())) {
                     return false;
@@ -724,7 +767,7 @@ public class Board {
                 return true;
             }
         } else if (color.equals("black")) {
-            //Check if the king will be in check when moved
+            
             if (this.chessBoard[0][4].piece.getSymbol(color) == 'k') {
                 if (!(this.chessBoard[0][4].piece.firstMove())) {
                     return false;
@@ -787,21 +830,9 @@ public class Board {
     }
     
     /**
-     * tester board
+     * Getter for valid move conditions based on previous methods called
      * @return
      */
-    public void setBoardStart2(){
-    	chessBoard[0][0].setPiece(new Rook("black", "a8"));
-    	chessBoard[0][1].setPiece(new Queen("black", "b8"));
-    	chessBoard[0][2].setPiece(new Knight("black", "c8"));
-    	chessBoard[6][0].setPiece(new Pawn("black", "a2"));
-    	chessBoard[0][6].setPiece(new King("black", "h8"));
-    	
-    	chessBoard[3][3].setPiece(new King("white", "d4"));
-    	chessBoard[2][7].setPiece(new Pawn("white", "h3"));
-    	chessBoard[7][3].setPiece(new Pawn("white", "d2"));
-    }
-    
     public boolean validMove() {
         return isValMov;
     }

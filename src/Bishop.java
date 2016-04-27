@@ -13,6 +13,9 @@ public class Bishop extends Piece{
 	private int curX;
 	private int curY;
 	
+	/**
+	 * Default constructor for a new Bishop.
+	 */
 	public Bishop(){
 		String type = "Bishop";
 		char symbol = 'B';
@@ -22,6 +25,11 @@ public class Bishop extends Piece{
 		//int curY; needs a converter method
 	}
 	
+	/**
+	 * Constructor for a Bishop with a provided color and position.
+	 * @param color
+	 * @param curPos
+	 */
 	public Bishop(String color, String curPos){
 		this.type = "Bishop";
 		char symbol = getSymbol(color);
@@ -31,6 +39,9 @@ public class Bishop extends Piece{
 		//int curY; needs a converter method
 	}
 	
+	/**
+	 * Determines if a move is valid using the Bishop's movement rules.
+	 */
 	@Override
 	public boolean validMove(Space[][] chessBoard, int staX, int staY, int tarX, int tarY) {		
 		// A bishop moves diagonally by N spaces
@@ -161,12 +172,6 @@ public class Bishop extends Piece{
 
 		return true;
 	}
-
-	@Override
-	public boolean validCap() {
-		// TODO Auto-generated method stub
-		return false;
-	}
 	
 	@Override
 	public String getType(){
@@ -209,8 +214,8 @@ public class Bishop extends Piece{
 	}
 	
 	@Override
-    	public boolean firstMove() {
-        	return false;
-    	}
+    public boolean firstMove() {
+       	return false;
+    }
 	
 }

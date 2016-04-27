@@ -14,26 +14,33 @@ public class King extends Piece{
 	private int curY;
 	private boolean firstMove;
 	
+	/**
+	 * Default constructor for a King.
+	 */
 	public King(){
 		String type = "King";
 		char symbol = 'K';
 		String color;
 		String curPos;
 		this.firstMove = true;
-		//int curX; needs a converter method
-		//int curY; needs a converter method
 	}
 	
+	/**
+	 * Constructor for a King with a provided color and position.
+	 * @param color
+	 * @param curPos
+	 */
 	public King(String color, String curPos){
 		this.type = "King";
 		char symbol = getSymbol(color);
 		this.color = color;
 		this.curPos = curPos;
 		this.firstMove = true;
-		//int curX; needs a converter method
-		//int curY; needs a converter method
 	}
 	
+	/**
+	 * Determines if a move is valid using the King's movement rules.
+	 */
 	@Override
 	public boolean validMove(Space[][] chessBoard, int staX, int staY, int tarX, int tarY) {
 		// A King moves vertically, horizontally, or diagonally by 1 space.
@@ -50,12 +57,6 @@ public class King extends Piece{
 		return true;
 	}
 
-	@Override
-	public boolean validCap() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	
 	@Override
 	public String getType(){
 		return this.type;

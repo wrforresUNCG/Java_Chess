@@ -8,7 +8,12 @@ public class EmptyPiece extends Piece{
 	int curX;
 	int curY;
 	
-	
+	/**
+	 * Constructor for creating a new empty piece with provided x and y coordinates
+	 * 
+	 * @param i
+	 * @param j
+	 */
 	public EmptyPiece(int i, int j){
 		this.type = "empty";
 		this.color = "none";
@@ -18,16 +23,11 @@ public class EmptyPiece extends Piece{
 		this.curY = i;
 	}
 	
-	
+	/**
+	 * An Empty Piece has no valid moves
+	 */
 	@Override
 	public boolean validMove(Space[][] chessBoard, int staX, int staY, int tarX, int tarY) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean validCap() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
@@ -48,7 +48,6 @@ public class EmptyPiece extends Piece{
 
 	@Override
 	public String getCurPos() {
-		// TODO Auto-generated method stub
 		return this.curPos;
 	}
 

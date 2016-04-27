@@ -13,24 +13,31 @@ public class Knight extends Piece{
 	private int curX;
 	private int curY;
 	
+	/**
+	 * Default constructor for a Knight
+	 */
 	public Knight(){
 		String type = "Knight";
 		char symbol = 'N';
 		String color;
 		String curPos;
-		//int curX; needs a converter method
-		//int curY; needs a converter method
 	}
 	
+	/**
+	 * Constructor for a Knight with provided color and position
+	 * @param color
+	 * @param curPos
+	 */
 	public Knight(String color, String curPos){
 		this.type = "Knight";
 		char symbol = getSymbol(color);
 		this.color = color;
 		this.curPos = curPos;
-		//int curX; needs a converter method
-		//int curY; needs a converter method
 	}
 	
+	/**
+	 * Determines if a move is valid using the Knight's movement rules.
+	 */
 	@Override
 	public boolean validMove(Space[][] chessBoard, int staX, int staY, int tarX, int tarY) {
 		// Knights move in L-shaped patterns where
@@ -51,12 +58,6 @@ public class Knight extends Piece{
 		if(chessBoard[tarY][tarX].piece.getColor().equals(teamOcc)) return false;
 		
 		return true;
-	}
-
-	@Override
-	public boolean validCap() {
-		// TODO Auto-generated method stub
-		return false;
 	}
 	
 	@Override
